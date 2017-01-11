@@ -9,12 +9,10 @@ describe("Filter about datetime", function() {
   arg1 = Date.parse(dt);
   result = "1/1/2017";
   it(dt + " | appDate -> " + result, function() {
-    moment.locale("zh-cn");
     return expect(filter("appDate")(arg1)).toEqual(result);
   });
   result1 = "Jan 1, 2017 1:02 AM";
   return it(dt + " | appDateTime -> " + result1, function() {
-    moment.locale("zh-cn");
     return expect(filter("appDateTime")(arg1)).toEqual(result1);
   });
 });

@@ -10,10 +10,8 @@
     
     result = "1/1/2017"
     it "#{dt} | appDate -> #{result}", ->
-        moment.locale "zh-cn"
         expect(filter("appDate")(arg1)).toEqual result
         
     result1 = "Jan 1, 2017 1:02 AM"
     it "#{dt} | appDateTime -> #{result1}", ->
-        moment.locale "zh-cn"
         expect(filter("appDateTime")(arg1)).toEqual result1
