@@ -34,7 +34,9 @@
         position: relative;
         margin-left: 5px; }
       .jasmine_html-reporter .jasmine-results ul.jasmine-suite ul.jasmine-specs .jasmine-failed > a:after {
-        content: "\02718"; }
+        content: "\02718";
+        position: relative;
+        margin-left: 5px; }
   .jasmine_html-reporter .jasmine-results .jasmine-failures .jasmine-description {
     line-height: 28px; }
 
