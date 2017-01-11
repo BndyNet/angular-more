@@ -1,22 +1,6 @@
 ﻿[
   {
-    "outputFile": "src/directives/bn-ui-input.js",
-    "inputFile": "src/directives/bn-ui-input.coffee"
-  },
-  {
-    "outputFile": "src/directives/bn-ui-pager.js",
-    "inputFile": "src/directives/bn-ui-pager.coffee"
-  },
-  {
-    "outputFile": "src/filters/datetime.js",
-    "inputFile": "src/filters/datetime.coffee"
-  },
-  {
-    "outputFile": "test/jasmine/test.js",
-    "inputFile": "test/jasmine/test.coffee"
-  },
-  {
-    "outputFile": "test/filters/datetime.js",
-    "inputFile": "test/filters/datetime.coffee"
+    "outputFile": "test/lib/jasmine.mine.css",
+    "inputFile": "test/lib/jasmine.mine.scss"
   }
 ]
