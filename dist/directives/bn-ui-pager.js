@@ -17,6 +17,9 @@ angular.module("bnUi", []).directive("bnUiPager", function() {
       onPage: "=onPage"
     },
     link: function(scope, ele, attrs) {
+      if (typeof scope.model === "undefined") {
+        scope.model = {};
+      }
       scope.showSummary = typeof attrs["showSummary"] !== "undefined" ? attrs["showSummary"] === "true" : true;
       if (typeof scope.model.pageCount === "undefined") {
         scope.model.pageCount = Math.ceil(scope.model.recordCount / scope.model.pageSize);

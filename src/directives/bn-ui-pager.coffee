@@ -42,6 +42,7 @@ angular.module "bnUi", []
             model: "=ngModel"
             onPage: "=onPage"
         link: (scope, ele, attrs) ->
+            scope.model = {} if typeof(scope.model) is "undefined"
             scope.showSummary = if typeof(attrs["showSummary"]) isnt "undefined" then attrs["showSummary"] is "true" else true
             scope.model.pageCount = Math.ceil(scope.model.recordCount / scope.model.pageSize) if typeof scope.model.pageCount is "undefined"
 
