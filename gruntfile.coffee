@@ -25,11 +25,14 @@
     uglify:
       options:
         sourceMap: false
-        banner: "/*! <%= pkg.file %> <%= grunt.template.today('yyyy-mm-dd') %> */\n"
+        banner: '/*!\n' +
+            ' * <%= pkg.name %> v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
+            ' * (c) 2014-<%= grunt.template.today("yyyy") %> Bndy.Net (http://www.bndy.net)\n' + 
+            ' */\n'
       my_target:
         files: [{
           expand: true
-          cwd: "src"
+          cwd: "dist"
           src: "**/*.js"
           dest: "dist"
           ext: ".min.js"
@@ -56,5 +59,6 @@
   grunt.loadNpmTasks "grunt-contrib-watch"
   grunt.loadNpmTasks "grunt-contrib-coffee"
   grunt.loadNpmTasks "grunt-contrib-uglify"
-  #grunt.loadNpmTasks "grunt-contrib-sass"
+#  grunt.loadNpmTasks "grunt-sass"
+  
   grunt.registerTask "default", ["coffee", "uglify"]
