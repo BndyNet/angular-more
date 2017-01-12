@@ -70,7 +70,6 @@ angular.module "bnUi", []
 
             scope.page = (p) ->
                 p = 1 if p <= 0
-                console.debug scope.model.pageCount
                 p = scope.model.pageCount if p > scope.model.pageCount
                 if scope.model.currentPage isnt p
                     scope.onPage p

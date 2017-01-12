@@ -82,7 +82,6 @@ angular.module("bnUi", []).directive("bnUiPager", function() {
         if (p <= 0) {
           p = 1;
         }
-        console.debug(scope.model.pageCount);
         if (p > scope.model.pageCount) {
           p = scope.model.pageCount;
         }
