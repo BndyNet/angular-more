@@ -21,6 +21,12 @@
           src: "**/*.coffee"
           dest: "test"
           ext: ".js"
+        }, {
+            expand: true
+            cwd: "demo"
+            src: "**/*.coffee"
+            dest: "demo"
+            ext: ".js"
         }]
     uglify:
       options:
@@ -38,20 +44,26 @@
           ext: ".min.js"
         }]
     sass:
-      options:{}
-      files: [{
-        expand: true
-        cwd: "src"
-        src: ["*.scss"]
-        dest: "dist"
-        ext: ".css"
-      }]
+      dist: 
+        files: [{
+          expand: true
+          cwd: "src"
+          src: "**/*.scss"
+          dest: "dist"
+          ext: ".css"
+        }, {
+          expand: true
+          cwd: "demo"
+          src: "**/*.sccc"
+          dest: "demo"
+          ext: ".css"
+        }]
     watch:
       scripts:
         options: {
           spawn: false
         }
-        files: ["src/*.scss", "src/*.coffee"]
+        files: ["src/**/*.scss", "src/**/*.coffee", "demo/**/*.coffee", "demo/**/*.scss"]
         tasks: ["sass", "coffee"]
 
 
@@ -59,6 +71,6 @@
   grunt.loadNpmTasks "grunt-contrib-watch"
   grunt.loadNpmTasks "grunt-contrib-coffee"
   grunt.loadNpmTasks "grunt-contrib-uglify"
-#  grunt.loadNpmTasks "grunt-sass"
+  grunt.loadNpmTasks "grunt-sass"
   
-  grunt.registerTask "default", ["coffee", "uglify"]
+  grunt.registerTask "default", ["coffee", "sass", "uglify"]

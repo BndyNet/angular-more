@@ -2,3 +2,7 @@
 node_modules
 angular-more.sln
 angular-more.sln.GhostDoc.xml
+compilerconfig.json
+compilerconfig.json.defaults
+gruntfile.js
+gruntfile.min.js
