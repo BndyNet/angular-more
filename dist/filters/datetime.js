@@ -1,3 +1,8 @@
+/*!
+ * angular-more v2.0.0 (https://github.com/BndyNet/angular-more#readme)
+ * (c) 2014-2017 Bndy.Net (http://www.bndy.net)
+ */
+
 "use strict";
 
 /*!
