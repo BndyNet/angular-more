@@ -1,0 +1,6 @@
+/*!
+ * angular-more v2.0.0 (https://github.com/BndyNet/angular-more#readme)
+ * (c) 2014-2017 Bndy.Net (http://www.bndy.net)
+ */
+
+.bn-ui-pager{margin:10px 0}.bn-ui-pager:after{content:"";display:block;clear:both}.bn-ui-pager .summary{float:left;margin:7px 0}.bn-ui-pager nav{float:right}.bn-ui-pager nav .pagination{margin:0}@media (max-width:768px){.bn-ui-pager .summary,.bn-ui-pager nav{float:none;text-align:center}.bn-ui-pager .summary{margin-bottom:10px}}
