@@ -1,0 +1,3 @@
+[submodule "src/lib/bootstrap-more"]
+	path = src/lib/bootstrap-more
+	url = git@github.com:BndyNet/bootstrap-more.git
