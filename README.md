@@ -1,4 +1,4 @@
-# [Angular More](https://github.com/bndynet/angular-more)
+ï»¿# [Angular More](https://github.com/bndynet/angular-more)
 
 This is the extensions about directives, filters for angular.
 
@@ -27,14 +27,14 @@ Within the download you'll find the following directories and files, logically g
 
 ```
 angular-more/
-©À©¤©¤ dist/
-©¦   ©À©¤©¤ angular-more.css
-©¦   ©À©¤©¤ angular-more.min.css
-©¦   ©À©¤©¤ angular-more.js
-©¦   ©¸©¤©¤ angular-more.min.js
-©À©¤©¤ demo/
-©À©¤©¤ test/
-©¸©¤©¤ src/
+â”œâ”€â”€ dist/
+â”‚   â”œâ”€â”€ angular-more.css
+â”‚   â”œâ”€â”€ angular-more.min.css
+â”‚   â”œâ”€â”€ angular-more.js
+â”‚   â””â”€â”€ angular-more.min.js
+â”œâ”€â”€ demo/
+â”œâ”€â”€ test/
+â””â”€â”€ src/
 ```
 
 We provide compiled CSS and JS (`angular-more.*`), as well as compiled and minified CSS and JS (`angular-more.min.*`). 
