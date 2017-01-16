@@ -66,9 +66,10 @@ Based on [jasmine](https://jasmine.github.io/).
 
 ```html
 <div class="row">
-    <bn-ui-input class="col-xs-4" label="Username" ng-model="model.username" required></bn-ui-input>
+    <bn-ui-input class="col-xs-4" label="Username" ng-model="model.username" required></bn-ui-input>
     <bn-ui-input class="col-xs-4" label="Birthday" ng-model="model.birthday" type="date" format="MM/DD/YYYY"></bn-ui-input>
-    <bn-ui-input class="col-xs-4" label="Date Time" ng-model="model.datetime" type="datetime" format="MM/DD/YYYY h:mm a"></bn-ui-input></div>
+    <bn-ui-input class="col-xs-4" label="Date Time" ng-model="model.datetime" type="datetime" format="MM/DD/YYYY h:mm a"></bn-ui-input>
+</div>
 ````
 
 #### bn-ui-pager
