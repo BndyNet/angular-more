@@ -7,7 +7,7 @@
 # @param {function} on-page - function(currentPage) { // here to get data; }
 #
 ###
-angular.module "bnUi", []
+angular.module "bn.ui.pager", []
     .directive "bnUiPager", ->
         restrict: "E"
         template: '''
@@ -40,7 +40,7 @@ angular.module "bnUi", []
         replace: true
         scope:
             model: "=ngModel"
-            onPage: "=onPage"
+            onPage: "&onPage"
         link: (scope, ele, attrs) ->
             scope.model = {} if typeof(scope.model) is "undefined"
             scope.showSummary = if typeof(attrs["showSummary"]) isnt "undefined" then attrs["showSummary"] is "true" else true
@@ -67,14 +67,16 @@ angular.module "bnUi", []
                             scope.model.displayPageNumbers.push p for p in [scope.model.currentPage - 2..scope.model.currentPage + 2]
                             scope.model.displayPageNumbers.push -1
                             scope.model.displayPageNumbers.push p for p in [scope.model.pageCount - 1..scope.model.pageCount]
+                return
 
             scope.page = (p) ->
                 p = 1 if p <= 0
                 p = scope.model.pageCount if p > scope.model.pageCount
                 if scope.model.currentPage isnt p
-                    scope.onPage p
+                    scope.onPage p if scope.onPage
                     scope.model.currentPage = p
                     scope.computePageNumbers()
+                return
 
             scope.$on "onModelChanged", ->
                 scope.computePageNumbers()

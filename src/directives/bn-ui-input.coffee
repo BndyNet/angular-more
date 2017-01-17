@@ -17,7 +17,7 @@
 #       </addon>
 #   </bn-input>
 ###
-angular.module "bnUi", ["ngSanitize", "ui.bootstrap.datetimepicker", "ui.dateTimeInput"]
+angular.module "bn.ui.input", ["ngSanitize", "ui.bootstrap.datetimepicker", "ui.dateTimeInput"]
     .directive "bnUiInput", [ 
         ->
             restrict: "E"

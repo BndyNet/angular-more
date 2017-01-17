@@ -50,7 +50,7 @@ We provide compiled CSS and JS (`angular-more.*`), as well as compiled and minif
 ```
 
 ```js
-var app = angular.module("app", ["ngSanitize", "bnUi"]);
+var app = angular.module("app", ["ngSanitize", "bn.ui.input", "bn.ui.select", ...]);
 ```
 
 ### Testing
@@ -70,7 +70,7 @@ Based on [jasmine](https://jasmine.github.io/).
     <bn-ui-input class="col-xs-4" label="Birthday" ng-model="model.birthday" type="date" format="MM/DD/YYYY"></bn-ui-input>
     <bn-ui-input class="col-xs-4" label="Date Time" ng-model="model.datetime" type="datetime" format="MM/DD/YYYY h:mm a"></bn-ui-input>
 </div>
-````
+````#### bn-ui-select```html<bn-ui-select class="col-xs-4" label="Dropdown" ng-model="model.dropdown" ng-source="model.source"></bn-ui-select>``````js$scope.model = {    source: {"option 1": "1", "option 2": "2"},    dropdownn: "2"};```
 
 #### bn-ui-pager
 

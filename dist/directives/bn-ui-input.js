@@ -22,7 +22,7 @@
  *       </addon>
  *   </bn-input>
  */
-angular.module("bnUi", ["ngSanitize", "ui.bootstrap.datetimepicker", "ui.dateTimeInput"]).directive("bnUiInput", [
+angular.module("bn.ui.input", ["ngSanitize", "ui.bootstrap.datetimepicker", "ui.dateTimeInput"]).directive("bnUiInput", [
   function() {
     return {
       restrict: "E",

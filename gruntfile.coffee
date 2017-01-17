@@ -85,7 +85,15 @@
           dest: "dist/css"
           ext: ".min.css"
         }]
-          
+        
+    concat: 
+      options:
+        separator: ";"
+      dist:
+        files:
+          "dist/angular-more.min.js": ["dist/directives/*.min.js", "dist/filters/*.min.js"]
+          "dist/angular-more.min.css": ["dist/css/*.min.css"]
+        
     watch:
       scripts:
         options:
@@ -103,4 +111,4 @@
   grunt.loadNpmTasks "grunt-sass"
   grunt.loadNpmTasks "grunt-banner"
   
-  grunt.registerTask "default", ["clean", "coffee", "sass", "uglify", "cssmin", "usebanner"]
+  grunt.registerTask "default", ["clean", "coffee", "sass", "uglify", "cssmin", "concat", "usebanner"]
