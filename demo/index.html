@@ -22,7 +22,7 @@
 
     <script src="../dist/angular-more.min.js"></script>
     <script>
-        var app = angular.module("app", ["bn.ui.input", "bn.ui.select", "bn.ui.pager"]);
+        var app = angular.module("app", ["bn.ui.input", "bn.ui.select", "bn.ui.checks", "bn.ui.pager"]);
     </script>
 </head>
 <body style="padding:20px;">
@@ -77,7 +77,33 @@
         }]);
     </script>
 
-    <!--<div class="panel panel-default panel-example" ng-controller="BnUiPagerCtrl">
+    <div class="panel panel-default panel-example" ng-controller="BnUiChecksCtrl">
+        <div class="panel-heading">
+            <div class="panel-title">
+                bn-ui-checks @source={key: value}, @multiple=true/false, @with-icon=true/false, @ng-model=object/[]
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <bn-ui-checks label="Radio/Checkbox" source="source" ng-model="model" multiple="true" with-icon="true"></bn-ui-checks>
+                {{model}}
+            </div>
+        </div>
+    </div>
+    <script>
+        app.controller("BnUiChecksCtrl", ["$scope", function ($scope) {
+            $scope.source = {
+                "Option 1": "Option 1",
+                "Option 2": "Option 2",
+                "Option 3": "Option 3",
+                "Option 4": "Option 4",
+                "Option 5": "Option 5",
+            };
+            $scope.model = ["Option 2", "Option 4"];
+        }]);
+    </script>
+
+    <div class="panel panel-default panel-example" ng-controller="BnUiPagerCtrl">
         <div class="panel-heading">
             <div class="panel-title">
                 bn-ui-pager @date-source= { currentPage: 1, pageSize: 10, recordCount: 108 }
@@ -85,18 +111,17 @@
         </div>
         <div class="panel-body">
             <div class="row">
-                <bn-ui-pager ng-model="model" on-page="getdata"></bn-ui-pager>
+                <bn-ui-pager ng-model="model" on-page="getData(page)"></bn-ui-pager>
             </div>
         </div>
     </div>
     <script>
         app.controller("BnUiPagerCtrl", ["$scope", function ($scope) {
             $scope.model = { currentPage: 1, pageSize: 10, recordCount: 108 };
-            $scope.getdata = function (p) {
-                //var m = angular.copy($scope.model);
-                //angular.copy(m, $scope.model)
+            $scope.getData = function (page) {
+                console.debug("TODO: Get data for Page#" + page);
             };
         }]);
-    </script>-->
+    </script>
 </body>
 </html>
