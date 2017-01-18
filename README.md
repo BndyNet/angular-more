@@ -46,12 +46,9 @@ We provide compiled CSS and JS (`angular-more.*`), as well as compiled and minif
 <!-- Latest compiled and minified CSS -->
 <link href="angular-more/dist/angular-more.min.css" rel="stylesheet"/>
 <!-- Latest compiled and minified JavaScript -->
-<script src="angular-more/dist/angular-more.min.js"></script>
-```
-
-```js
-var app = angular.module("app", ["ngSanitize", "bn.ui.input", "bn.ui.select", ...]);
-```
+<script src="angular-more/dist/angular-more.min.js"></script>```
+```jsvar app = angular.module("app", ["ngSanitize", "bn.filters", "bn.ui.input", "bn.ui.select", ...]);
+```
 
 ### Testing
 
@@ -62,15 +59,14 @@ Based on [jasmine](https://jasmine.github.io/).
 
 #### Directives
 
-##### bn-ui-input
-
-```html
-<div class="row">
+##### bn-ui-input
+```html<div class="row">
     <bn-ui-input class="col-xs-4" label="Username" ng-model="model.username" required></bn-ui-input>
     <bn-ui-input class="col-xs-4" label="Birthday" ng-model="model.birthday" type="date" format="MM/DD/YYYY"></bn-ui-input>
     <bn-ui-input class="col-xs-4" label="Date Time" ng-model="model.datetime" type="datetime" format="MM/DD/YYYY h:mm a"></bn-ui-input>
-</div>
-````#### bn-ui-select```html<bn-ui-select class="col-xs-4" label="Dropdown" ng-model="model.dropdown" ng-source="model.source"></bn-ui-select>``````js$scope.model = {    source: {"option 1": "1", "option 2": "2"},    dropdownn: "2"};```#### bn-ui-checks - source=\{key: value\} - multiple=true/false
+</div>
+````#### bn-ui-select - ng-model=string
+ - source=\{key: value\}```html<bn-ui-select class="col-xs-4" label="Dropdown" ng-model="model.dropdown" source="model.source"></bn-ui-select>``````js$scope.model = {    source: {"option 1": "1", "option 2": "2"},    dropdownn: "2"};```#### bn-ui-checks - source=\{key: value\} - multiple=true/false
  - with-icon=true/false
  - ng-model=object/[]         ```html<bn-ui-checks label="Radio/Checkbox" source="source" ng-model="model" multiple="true" with-icon="true"></bn-ui-checks>``````js$scope.source = {
     "Option 1": "Option 1",
@@ -81,7 +77,7 @@ Based on [jasmine](https://jasmine.github.io/).
 };
 $scope.model = ["Option 2", "Option 4"];```
 
-#### bn-ui-pager
+#### bn-ui-pager - ng-model={currentPage, pageSize, recordCount} - on-page=fn(page)  _//"page" is required_
 
 ```html
 <bn-ui-pager ng-model="{currentPage: 1, pageSize: 10, recordCount: 108 }" on-page="getData(page)"></bn-ui-pager>
