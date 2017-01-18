@@ -6,14 +6,14 @@ angular.module "bn.ui.select", ["ngSanitize"]
             restrict: "E"
             replace: true
             scope: 
-                ngModel: "=ngModel"
-                ngSource: "=ngSource"
-                label: "@label"
+                model: "=ngModel"
+                source: "="
+                label: "@"
             template: '''
                 <div class="bn-ui-select form-group">
                     <label ng-bind-html="label" ng-if="label"></label>
-                    <select ng-model="ngModel" class="form-control">
-                        <option value="{{value}}" ng-bind="key" ng-repeat="(key, value) in ngSource"></option>
+                    <select ng-model="model" class="form-control">
+                        <option value="{{value}}" ng-bind="key" ng-repeat="(key, value) in source"></option>
                     </select>
                 </div>
             '''

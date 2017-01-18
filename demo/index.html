@@ -58,12 +58,12 @@
     <div class="panel panel-default panel-example" ng-controller="BnUiSelectCtrl">
         <div class="panel-heading">
             <div class="panel-title">
-                bn-ui-select @date-source={key: value}
+                bn-ui-select @source={key: value}
             </div>
         </div>
         <div class="panel-body">
             <div class="row">
-                <bn-ui-select class="col-xs-3" label="Dropdown" ng-model="model.selected" ng-source="dataSource"></bn-ui-select>
+                <bn-ui-select class="col-xs-3" label="Dropdown" ng-model="model.selected" source="dataSource"></bn-ui-select>
             </div>
         </div>
     </div>
@@ -106,7 +106,7 @@
     <div class="panel panel-default panel-example" ng-controller="BnUiPagerCtrl">
         <div class="panel-heading">
             <div class="panel-title">
-                bn-ui-pager @date-source= { currentPage: 1, pageSize: 10, recordCount: 108 }
+                bn-ui-pager @ng-model= { currentPage: 1, pageSize: 10, recordCount: 108 }, @on-page=fn(page)
             </div>
         </div>
         <div class="panel-body">

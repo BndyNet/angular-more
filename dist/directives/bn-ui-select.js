@@ -10,11 +10,11 @@ angular.module("bn.ui.select", ["ngSanitize"]).directive("bnUiSelect", [
       restrict: "E",
       replace: true,
       scope: {
-        ngModel: "=ngModel",
-        ngSource: "=ngSource",
-        label: "@label"
+        model: "=ngModel",
+        source: "=",
+        label: "@"
       },
-      template: '<div class="bn-ui-select form-group">\n    <label ng-bind-html="label" ng-if="label"></label>\n    <select ng-model="ngModel" class="form-control">\n        <option value="{{value}}" ng-bind="key" ng-repeat="(key, value) in ngSource"></option>\n    </select>\n</div>'
+      template: '<div class="bn-ui-select form-group">\n    <label ng-bind-html="label" ng-if="label"></label>\n    <select ng-model="model" class="form-control">\n        <option value="{{value}}" ng-bind="key" ng-repeat="(key, value) in source"></option>\n    </select>\n</div>'
     };
   }
 ]);
