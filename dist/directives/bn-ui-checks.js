@@ -12,17 +12,25 @@ angular.module("bn.ui.checks", ["ngSanitize"]).directive("bnUiChecks", function(
       model: "=ngModel",
       label: "@",
       source: "=",
-      multiple: "=",
-      withIcon: "="
+      multiple: "=?",
+      withIcon: "=?"
     },
-    template: '<div class="bn-ui-checks form-group">\n    <label ng-bind-html="label" ng-if="label"></label>\n    <div>\n        <div class="btn-group">\n            <label class="btn btn-default" ng-repeat="(key, value) in source" \n                ng-class="{active: isExisted(value)}" ng-click="select(value)">\n\n                <i class="glyphicon fa fa-fw {{multiple?\'glyphicon-check fa-check-square-o\':\'glyphicon-ok fa-dot-circle-o\'}}" ng-show="isExisted(value) && withIcon"></i>\n                <i class="glyphicon fa fa-fw {{multiple?\'glyphicon-unchecked fa-square-o\':\'fa-circle-o\'}}" ng-show="!isExisted(value) && withIcon"></i>\n                <span ng-bind="key"></span>\n            </label>\n        </div>\n    </div>\n</div>',
+    template: '<div class="bn-ui-checks form-group">\n    <label ng-bind-html="label" ng-if="label"></label>\n    <div>\n        <div class="btn-group">\n            <label class="btn btn-default" ng-repeat="(key, value) in source" \n                ng-class="{active: isExisted(value)}" ng-click="select(value)">\n\n                <i class="glyphicon fa fa-fw {{multiple?\'glyphicon-check fa-check-square-o\':\'glyphicon-ok fa-dot-circle-o\'}}" ng-show="isExisted(value) && showIcon()"></i>\n                <i class="glyphicon fa fa-fw {{multiple?\'glyphicon-unchecked fa-square-o\':\'fa-circle-o\'}}" ng-show="!isExisted(value) && showIcon()"></i>\n                <span ng-bind="key"></span>\n            </label>\n        </div>\n    </div>\n</div>',
     link: function(scope, ele, attrs) {
       if (!scope.model && scope.multiple) {
         scope.model = [];
       }
-      if (!scope.withIcon) {
+      console.debug(scope.withIcon);
+      if (typeof scope.withIcon === "undefined") {
         scope.withIcon = false;
       }
+      scope.showIcon = function() {
+        if (typeof scope.withIcon === "undefined") {
+          return false;
+        } else {
+          return scope.withIcon;
+        }
+      };
       scope.isExisted = function(value) {
         if (typeof scope.model === "undefined") {
           return false;
