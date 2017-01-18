@@ -84,7 +84,9 @@ angular.module("bn.ui.pager", []).directive("bnUiPager", function() {
         }
         if (scope.model.currentPage !== p) {
           if (scope.onPage) {
-            scope.onPage(p);
+            scope.onPage({
+              page: p
+            });
           }
           scope.model.currentPage = p;
           scope.computePageNumbers();

@@ -73,7 +73,7 @@ angular.module "bn.ui.pager", []
                 p = 1 if p <= 0
                 p = scope.model.pageCount if p > scope.model.pageCount
                 if scope.model.currentPage isnt p
-                    scope.onPage p if scope.onPage
+                    scope.onPage {page:p} if scope.onPage
                     scope.model.currentPage = p
                     scope.computePageNumbers()
                 return
