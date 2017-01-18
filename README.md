@@ -70,7 +70,16 @@ Based on [jasmine](https://jasmine.github.io/).
     <bn-ui-input class="col-xs-4" label="Birthday" ng-model="model.birthday" type="date" format="MM/DD/YYYY"></bn-ui-input>
     <bn-ui-input class="col-xs-4" label="Date Time" ng-model="model.datetime" type="datetime" format="MM/DD/YYYY h:mm a"></bn-ui-input>
 </div>
-````#### bn-ui-select```html<bn-ui-select class="col-xs-4" label="Dropdown" ng-model="model.dropdown" ng-source="model.source"></bn-ui-select>``````js$scope.model = {    source: {"option 1": "1", "option 2": "2"},    dropdownn: "2"};```
+````#### bn-ui-select```html<bn-ui-select class="col-xs-4" label="Dropdown" ng-model="model.dropdown" ng-source="model.source"></bn-ui-select>``````js$scope.model = {    source: {"option 1": "1", "option 2": "2"},    dropdownn: "2"};```#### bn-ui-checks - source=\{key: value\} - multiple=true/false
+ - with-icon=true/false
+ - ng-model=object/[]         ```html<bn-ui-checks label="Radio/Checkbox" source="source" ng-model="model" multiple="true" with-icon="true"></bn-ui-checks>``````js$scope.source = {
+    "Option 1": "Option 1",
+    "Option 2": "Option 2",
+    "Option 3": "Option 3",
+    "Option 4": "Option 4",
+    "Option 5": "Option 5",
+};
+$scope.model = ["Option 2", "Option 4"];```
 
 #### bn-ui-pager
 
