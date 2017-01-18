@@ -20,7 +20,9 @@ angular.module("bn.ui.checks", ["ngSanitize"]).directive("bnUiChecks", function(
       if (!scope.model && scope.multiple) {
         scope.model = [];
       }
-      console.debug(scope.withIcon);
+      if (typeof scope.multiple === "undefined") {
+        scope.multiple = false;
+      }
       if (typeof scope.withIcon === "undefined") {
         scope.withIcon = false;
       }
