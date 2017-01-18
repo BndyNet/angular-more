@@ -5,7 +5,7 @@
 # 
 # @required: moment.js
 ###
-angular.module "bnFilters", []
+angular.module "bn.filters", []
     .filter "appDate", ->
         (input) ->
             if moment(input).isValid()

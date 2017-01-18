@@ -10,7 +10,7 @@
  * 
  * @required: moment.js
  */
-angular.module("bnFilters", []).filter("appDate", function() {
+angular.module("bn.filters", []).filter("appDate", function() {
   return function(input) {
     if (moment(input).isValid()) {
       if (moment.locale() === "zh-cn") {
