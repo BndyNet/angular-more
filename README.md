@@ -84,7 +84,7 @@ $scope.model = ["Option 2", "Option 4"];```
 #### bn-ui-pager
 
 ```html
-<bn-ui-pager ng-model="{currentPage: 1, pageSize: 10, recordCount: 108 }" on-page="page(p)"></bn-ui-pager>
+<bn-ui-pager ng-model="{currentPage: 1, pageSize: 10, recordCount: 108 }" on-page="getData(page)"></bn-ui-pager>
 ```
 
 ## Copyright and license
