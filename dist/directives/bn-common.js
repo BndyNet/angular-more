@@ -9,8 +9,7 @@ angular.module("bn.common", []).directive("bnFillHeight", [
     return {
       restrict: "A",
       link: function(scope, ele, attrs) {
-        ele.css("height", ele.parent().height());
-        return console.debug(ele.html());
+        return ele.css("height", ele.parent().height());
       }
     };
   }

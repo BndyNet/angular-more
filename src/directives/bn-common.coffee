@@ -6,5 +6,4 @@ angular.module "bn.common", []
             restrict: "A"
             link: (scope, ele, attrs) ->
                 ele.css "height", ele.parent().height()
-                console.debug ele.html()
     ]
