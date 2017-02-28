@@ -1,7 +1,7 @@
 describe("Filter about datetime", function() {
   var arg1, dt, filter, result, result1;
   filter = null;
-  beforeEach(module("bnFilters"));
+  beforeEach(module("bn.filters"));
   beforeEach(inject(function(_$filter_) {
     return filter = _$filter_;
   }));

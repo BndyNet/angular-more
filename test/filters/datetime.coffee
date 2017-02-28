@@ -1,7 +1,7 @@
 ﻿describe "Filter about datetime", ->
     
     filter = null
-    beforeEach module "bnFilters"
+    beforeEach module "bn.filters"
     beforeEach inject (_$filter_) ->
         filter = _$filter_
     
