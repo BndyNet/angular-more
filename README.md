@@ -1,6 +1,8 @@
 ﻿# [Angular More](https://github.com/bndynet/angular-more)
+ 
+[Demo](http://bndy.net/angular-more/demo/)
 
-This is the extensions about directives, filters for angular.
+This is the extensions about directives, filters for Angular.
 
 
 ## Dependencies
