@@ -19,6 +19,14 @@ Requires:
 - Clone the repo
 
     `git clone https://github.com/bndynet/angular-more.git`
+    
+    `git submodule init`
+    
+    `git submodule update`
+    
+- Update node modules
+
+    `npm install`
 
 
 ### What's included
