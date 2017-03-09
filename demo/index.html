@@ -3,213 +3,269 @@
 <head>
     <title></title>
     <meta charset="utf-8"/>
-    <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
-    <link href="../node_modules/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" rel="stylesheet"/>
+    <link href="../lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
+    <link href="../lib/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" rel="stylesheet"/>
     <link href="../lib/bootstrap-more/dist/bootstrap-more.css" rel="stylesheet"/>
 
     <link href="../dist/angular-more.min.css" rel="stylesheet"/>
 
-    <script src="../node_modules/jquery/dist/jquery.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="../lib/bootstrap-more/dist/bootstrap-more.js"></script>
-    <script src="../node_modules/moment/min/moment-with-locales.js"></script>
-    <script src="../node_modules/angular/angular.js"></script>
-    <script src="../node_modules/angular-sanitize/angular-sanitize.js"></script>
+    <script src="../lib/jquery/dist/jquery.js"></script>
 
-    <script src="../node_modules/angular-date-time-input/src/dateTimeInput.js"></script>
-    <script src="../node_modules/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
-    <script src="../node_modules/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
+    <script src="../lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../lib/bootstrap-more/dist/bootstrap-more.js"></script>
+    <script src="../lib/moment/min/moment-with-locales.js"></script>
+    <script src="../lib/angular/angular.js"></script>
+    <script src="../lib/angular-sanitize/angular-sanitize.js"></script>
+
+    <script src="../lib/angular-date-time-input/src/dateTimeInput.js"></script>
+    <script src="../lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+    <script src="../lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
 
     <script src="../dist/angular-more.min.js"></script>
     <script>
         var app = angular.module("app", ["bn.filters", "bn.common", "bn.ui.input", "bn.ui.select", "bn.ui.checks", "bn.ui.pager", "bn.ui.colorpicker"]);
     </script>
 </head>
-<body style="padding:20px;">
-<h4>
-    angular.module("app", ["bn.filters", "bn.common", "bn.ui.input", "bn.ui.select", "bn.ui.checks", "bn.ui.pager", "bn.ui.colorpicker"]);
-</h4>
+<body class="page-article">
 
-<div class="panel panel-default panel-example" ng-controller="BnUiColorpicker">
-    <div class="panel-heading">
-        <div class="panel-title">
-            bn-ui-colorpicker @ng-colors=[{key, value, css, description},...]  @ng-model  @ng-change=fn(color)
-        </div>
-    </div>
-    <div class="panel-body">
-        <bn-ui-colorpicker ng-colors="colors" ng-model="model1" ng-change="changeColor1(color)"></bn-ui-colorpicker>
-        Color Item: <span ng-bind="selectedColor1"></span>
-        <hr />
-        <bn-ui-colorpicker  ng-colors="colorsWithoutDescription" ng-model="model2" ng-change="changeColor2(color)"></bn-ui-colorpicker>
-        Color Item: <span ng-bind="selectedColor2"></span>
-    </div>
-</div>
-<script>
-    app.controller("BnUiColorpicker", ["$scope", function ($scope) {
-        $scope.colors = [
-            {
-                key: 0,
-                value: "red",
-                description: "Red"
-            },
-            {
-                key: 1,
-                value: "green",
-                description: "Green"
-            },
-            {
-                key: 2,
-                value: "orange",
-                description: "Orange"
-            },
-            {
-                key: 3,
-                value: "Skyblue",
-                description: "Sky Blue"
-            }
-        ];
-        $scope.colorsWithoutDescription = [];
-        for(var a = 0; a < 255; a = a + 100){
-           for(var b = 0; b < 255; b = b + 100) {
-               for(var c = 0; c< 255; c = c + 100){
-                   $scope.colorsWithoutDescription.push({
-                       key: a.toString() + "-" +b.toString()+ "-" +c.toString(),
-                       value: "rgb(" + a.toString() + "," + b.toString() + "," + c.toString()+")"
-                   });
-               }
-           }
-        }
-        $scope.changeColor1 = function (color) {
-            $scope.model1 = color.key;
-            $scope.selectedColor1 = color;
-        }
-        $scope.changeColor2 = function (color) {
-            $scope.model2 = color.key;
-            $scope.selectedColor2 = color;
-        }
-    }]);
-</script>
+<div class="col-md-8 sections">
+    <code>
+        angular.module("app", ["bn.filters", "bn.common", "bn.ui.input", "bn.ui.select", "bn.ui.checks", "bn.ui.pager", "bn.ui.colorpicker"]);
+    </code>
 
-<div class="panel panel-default panel-example" ng-controller="BnUiInputCtrl">
-    <div class="panel-heading">
-        <div class="panel-title">
-            bn-ui-input @type=[date, datetime, text, url, email, number]
-        </div>
-    </div>
-    <div class="panel-body">
-        <form>
-            <div class="row">
-                <bn-ui-input label="Date" class="col-xs-4" ng-model="model.dt" type="date"
-                             format="MM/DD/YYYY"></bn-ui-input>
-                <bn-ui-input label="Date Time" class="col-xs-4" ng-model="model.dt" type="datetime"
-                             format="YYYY-MM-DD h:mm a"></bn-ui-input>
-                <bn-ui-input label="Text" class="col-xs-4" ng-model="model.dt" type="text"></bn-ui-input>
-            </div>
-            <div class="row">
-                <bn-ui-input label="Url" class="col-xs-4" ng-model="model.url" type="url"></bn-ui-input>
-                <bn-ui-input label="Email" class="col-xs-4" ng-model="model.email" type="email"></bn-ui-input>
-                <bn-ui-input label="Number" class="col-xs-4" ng-model="model.number" type="number"></bn-ui-input>
-            </div>
-        </form>
+    <section>
+        <h3>Directives</h3>
 
-    </div>
-</div>
-<script type="text/javascript">
-    app.controller("BnUiInputCtrl", ["$scope", function ($scope) {
-        $scope.model = {};
-    }]);
-</script>
+        <section>
+            <h3>
+                @bn-fill-height
+            </h3>
+            <div class="panel panel-default panel-example">
+                <div class="panel-body">
+                    <div class="">
+                        <div class="parent" style="height: 100px;background-color:#ff0000;color:white;">
+                            Container Panel
 
-<div class="panel panel-default panel-example" ng-controller="BnUiSelectCtrl">
-    <div class="panel-heading">
-        <div class="panel-title">
-            bn-ui-select @source={key: value}
-        </div>
-    </div>
-    <div class="panel-body">
-        <div class="row">
-            <bn-ui-select class="col-xs-3" label="Dropdown" ng-model="model.selected"
-                          source="dataSource"></bn-ui-select>
-        </div>
-    </div>
-</div>
-<script>
-    app.controller("BnUiSelectCtrl", ["$scope", function ($scope) {
-        $scope.dataSource = {
-            "Option 1": 1,
-            "Option 2": 2
-        };
-        $scope.model = {selected: "2"};
-    }]);
-</script>
-
-<div class="panel panel-default panel-example" ng-controller="BnUiChecksCtrl">
-    <div class="panel-heading">
-        <div class="panel-title">
-            bn-ui-checks @source={key: value}, @multiple=true/false, @with-icon=true/false, @ng-model=object/[]
-        </div>
-    </div>
-    <div class="panel-body">
-        <div class="row">
-            <bn-ui-checks label="Radio/Checkbox" source="source" ng-model="model" multiple="true"
-                          with-icon="true"></bn-ui-checks>
-            {{model}}
-        </div>
-    </div>
-</div>
-<script>
-    app.controller("BnUiChecksCtrl", ["$scope", function ($scope) {
-        $scope.source = {
-            "Option 1": "Option 1",
-            "Option 2": "Option 2",
-            "Option 3": "Option 3",
-            "Option 4": "Option 4",
-            "Option 5": "Option 5",
-        };
-        $scope.model = ["Option 2", "Option 4"];
-    }]);
-</script>
-
-<div class="panel panel-default panel-example" ng-controller="BnUiPagerCtrl">
-    <div class="panel-heading">
-        <div class="panel-title">
-            bn-ui-pager @ng-model= { currentPage: 1, pageSize: 10, recordCount: 108 }, @on-page=fn(page)
-        </div>
-    </div>
-    <div class="panel-body">
-        <div class="row">
-            <bn-ui-pager ng-model="model" on-page="getData(page)"></bn-ui-pager>
-        </div>
-    </div>
-</div>
-<script>
-    app.controller("BnUiPagerCtrl", ["$scope", function ($scope) {
-        $scope.model = {currentPage: 1, pageSize: 10, recordCount: 108};
-        $scope.getData = function (page) {
-            console.debug("TODO: Get data for Page#" + page);
-        };
-    }]);
-</script>
-
-
-<div class="panel panel-default panel-example">
-    <div class="panel-heading">
-        <div class="panel-title">
-            @bn-fill-height
-        </div>
-    </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="parent" style="height: 100px;background-color:#ff0000;color:white;">
-                Container Panel
-
-                <div bn-fill-height
-                     style="top:0; background-color:rgba(0, 255,0, .6); text-align: center; color:white;">
-                    bn-fill-height
+                            <div bn-fill-height
+                                 style="top:0; background-color:rgba(0, 255,0, .6); text-align: center; color:white;">
+                                bn-fill-height
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+
+        <section>
+            <h3>&lt;bn-ui-colorpicker /&gt;</h3>
+            <div class="panel panel-default panel-example" ng-controller="BnUiColorpicker">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        bn-ui-colorpicker @ng-colors=[{key, value, css, description},...]  @ng-model  @ng-change=fn(color)
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <bn-ui-colorpicker ng-colors="colors" ng-model="model1" ng-change="changeColor1(color)"></bn-ui-colorpicker>
+                    Color Item: <span ng-bind="selectedColor1"></span>
+                    <hr />
+                    <bn-ui-colorpicker  ng-colors="colorsWithoutDescription" ng-model="model2" ng-change="changeColor2(color)"></bn-ui-colorpicker>
+                    Color Item: <span ng-bind="selectedColor2"></span>
+                </div>
+            </div>
+            <script>
+                app.controller("BnUiColorpicker", ["$scope", function ($scope) {
+                    $scope.colors = [
+                        {
+                            key: 0,
+                            value: "red",
+                            description: "Red"
+                        },
+                        {
+                            key: 1,
+                            value: "green",
+                            description: "Green"
+                        },
+                        {
+                            key: 2,
+                            value: "orange",
+                            description: "Orange"
+                        },
+                        {
+                            key: 3,
+                            value: "Skyblue",
+                            description: "Sky Blue"
+                        }
+                    ];
+                    $scope.colorsWithoutDescription = [];
+                    for(var a = 0; a < 255; a = a + 100){
+                        for(var b = 0; b < 255; b = b + 100) {
+                            for(var c = 0; c< 255; c = c + 100){
+                                $scope.colorsWithoutDescription.push({
+                                    key: a.toString() + "-" +b.toString()+ "-" +c.toString(),
+                                    value: "rgb(" + a.toString() + "," + b.toString() + "," + c.toString()+")"
+                                });
+                            }
+                        }
+                    }
+                    $scope.changeColor1 = function (color) {
+                        $scope.model1 = color.key;
+                        $scope.selectedColor1 = color;
+                    }
+                    $scope.changeColor2 = function (color) {
+                        $scope.model2 = color.key;
+                        $scope.selectedColor2 = color;
+                    }
+                }]);
+            </script>
+        </section>
+
+        <section>
+            <h3>&lt;bn-ui-input /&gt;</h3>
+            <div class="panel panel-default panel-example" ng-controller="BnUiInputCtrl">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        @type=[date, datetime, text, url, email, number]
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <div class="row">
+                            <bn-ui-input label="Date" class="col-xs-4" ng-model="model.dt" type="date"
+                                         format="MM/DD/YYYY"></bn-ui-input>
+                            <bn-ui-input label="Date Time" class="col-xs-4" ng-model="model.dt" type="datetime"
+                                         format="YYYY-MM-DD h:mm a"></bn-ui-input>
+                            <bn-ui-input label="Text" class="col-xs-4" ng-model="model.dt" type="text"></bn-ui-input>
+                        </div>
+                        <div class="row">
+                            <bn-ui-input label="Url" class="col-xs-4" ng-model="model.url" type="url"></bn-ui-input>
+                            <bn-ui-input label="Email" class="col-xs-4" ng-model="model.email"
+                                         type="email"></bn-ui-input>
+                            <bn-ui-input label="Number" class="col-xs-4" ng-model="model.number"
+                                         type="number"></bn-ui-input>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <script type="text/javascript">
+                app.controller("BnUiInputCtrl", ["$scope", function ($scope) {
+                    $scope.model = {};
+                }]);
+            </script>
+        </section>
+
+        <section>
+            <h3>
+                &lt;bn-ui-select /&gt;
+            </h3>
+            <div class="panel panel-default panel-example" ng-controller="BnUiSelectCtrl">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        @source={key: value}
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <bn-ui-select class="col-xs-3" label="Dropdown" ng-model="model.selected"
+                                      source="dataSource"></bn-ui-select>
+                    </div>
+                </div>
+            </div>
+            <script>
+                app.controller("BnUiSelectCtrl", ["$scope", function ($scope) {
+                    $scope.dataSource = {
+                        "Option 1": 1,
+                        "Option 2": 2
+                    };
+                    $scope.model = {selected: "2"};
+                }]);
+            </script>
+        </section>
+
+        <section>
+            <h3>
+                &lt;bn-ui-checks /&gt;
+            </h3>
+            <div class="panel panel-default panel-example" ng-controller="BnUiChecksCtrl">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        @source={key: value}, @multiple=true/false, @with-icon=true/false, @ng-model=object/[]
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="">
+                        <bn-ui-checks label="Radio/Checkbox" source="source" ng-model="model" multiple="true"
+                                      with-icon="true"></bn-ui-checks>
+                        {{model}}
+                    </div>
+                </div>
+            </div>
+            <script>
+                app.controller("BnUiChecksCtrl", ["$scope", function ($scope) {
+                    $scope.source = {
+                        "Option 1": "Option 1",
+                        "Option 2": "Option 2",
+                        "Option 3": "Option 3",
+                        "Option 4": "Option 4",
+                        "Option 5": "Option 5",
+                    };
+                    $scope.model = ["Option 2", "Option 4"];
+                }]);
+            </script>
+        </section>
+
+        <section>
+            <h3>
+                &lt;bn-ui-pager /&gt;
+            </h3>
+            <div class="panel panel-default panel-example" ng-controller="BnUiPagerCtrl">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        @ng-model= { currentPage: 1, pageSize: 10, recordCount: 108 }, @on-page=fn(page)
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="">
+                        <bn-ui-pager ng-model="model" on-page="getData(page)"></bn-ui-pager>
+                    </div>
+                </div>
+            </div>
+            <script>
+                app.controller("BnUiPagerCtrl", ["$scope", function ($scope) {
+                    $scope.model = {currentPage: 1, pageSize: 10, recordCount: 108};
+                    $scope.getData = function (page) {
+                        console.debug("TODO: Get data for Page#" + page);
+                    };
+                }]);
+            </script>
+        </section>
+
+    </section>
+
+    <section>
+        <h3>Filters</h3>
+        <section>
+            <h3>Date & Time</h3>
+            <table class="table">
+                <tr>
+                    <th class="col-xs-6">Code</th>
+                    <th>Result</th>
+                </tr>
+                <tr>
+                    <td> moment() | appDate </td>
+                    <td> <span ng-bind="moment() | appDate"></span> </td>
+                </tr>
+                <tr>
+                    <td> moment() | appDateTime </td>
+                    <td> <span ng-bind="moment() | appDateTime"></span> </td>
+                </tr>
+            </table>
+        </section>
+    </section>
 </div>
+
+<div class="col-md-4 navs"></div>
+
+<script src="http://bndy.net/demo-framework/init.js"></script>
 </body>
 </html>

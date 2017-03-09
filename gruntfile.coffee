@@ -101,6 +101,24 @@
         files: ["src/**/*.scss", "src/**/*.coffee", "demo/**/*.coffee", "demo/**/*.scss"]
         tasks: ["sass", "coffee"]
 
+    karma:
+      unit:
+        options:
+          frameworks: ["jasmine"]
+          singleRun: true
+          browsers: ["PhantomJS"]
+          files: [
+            "lib/jquery/dist/jquery.js"
+            "lib/moment/min/moment-with-locales.js"
+            "lib/angular/angular.js"
+            "lib/angular-date-time-input/src/dateTimeInput.js"
+            "lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"
+            "dist/angular-more.min.js"
+            "test/lib/angular-mocks.js"
+            "test/filters.js"
+            "test/directives.js"
+          ]
+
 
   grunt.loadNpmTasks "grunt-contrib-clean"
   grunt.loadNpmTasks "grunt-contrib-watch"
@@ -110,5 +128,7 @@
   grunt.loadNpmTasks "grunt-contrib-cssmin"
   grunt.loadNpmTasks "grunt-sass"
   grunt.loadNpmTasks "grunt-banner"
+  grunt.loadNpmTasks "grunt-karma"
   
   grunt.registerTask "default", ["clean", "coffee", "sass", "uglify", "cssmin", "concat", "usebanner"]
+  grunt.registerTask "test", ["karma"]

@@ -1,6 +1,8 @@
 ﻿# [Angular More](https://github.com/bndynet/angular-more)
+ 
+[Demo](http://bndy.net/angular-more/demo/)
 
-This is the extensions about directives, filters for angular.
+This is the extensions about directives, filters for Angular.
 
 
 ## Dependencies
@@ -19,6 +21,14 @@ Requires:
 - Clone the repo
 
     `git clone https://github.com/bndynet/angular-more.git`
+    
+    `git submodule init`
+    
+    `git submodule update`
+    
+- Update node modules
+
+    `npm install`
 
 
 ### What's included
