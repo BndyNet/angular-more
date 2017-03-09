@@ -22,13 +22,74 @@
 
     <script src="../dist/angular-more.min.js"></script>
     <script>
-        var app = angular.module("app", ["bn.filters", "bn.common", "bn.ui.input", "bn.ui.select", "bn.ui.checks", "bn.ui.pager"]);
+        var app = angular.module("app", ["bn.filters", "bn.common", "bn.ui.input", "bn.ui.select", "bn.ui.checks", "bn.ui.pager", "bn.ui.colorpicker"]);
     </script>
 </head>
 <body style="padding:20px;">
 <h4>
-    angular.module("app", ["bn.filters", "bn.common", "bn.ui.input", "bn.ui.select", "bn.ui.checks", "bn.ui.pager"]);
+    angular.module("app", ["bn.filters", "bn.common", "bn.ui.input", "bn.ui.select", "bn.ui.checks", "bn.ui.pager", "bn.ui.colorpicker"]);
 </h4>
+
+<div class="panel panel-default panel-example" ng-controller="BnUiColorpicker">
+    <div class="panel-heading">
+        <div class="panel-title">
+            bn-ui-colorpicker @ng-colors=[{key, value, css, description},...]  @ng-model  @ng-change=fn(color)
+        </div>
+    </div>
+    <div class="panel-body">
+        <bn-ui-colorpicker ng-colors="colors" ng-model="model1" ng-change="changeColor1(color)"></bn-ui-colorpicker>
+        Color Item: <span ng-bind="selectedColor1"></span>
+        <hr />
+        <bn-ui-colorpicker  ng-colors="colorsWithoutDescription" ng-model="model2" ng-change="changeColor2(color)"></bn-ui-colorpicker>
+        Color Item: <span ng-bind="selectedColor2"></span>
+    </div>
+</div>
+<script>
+    app.controller("BnUiColorpicker", ["$scope", function ($scope) {
+        $scope.colors = [
+            {
+                key: 0,
+                value: "red",
+                description: "Red"
+            },
+            {
+                key: 1,
+                value: "green",
+                description: "Green"
+            },
+            {
+                key: 2,
+                value: "orange",
+                description: "Orange"
+            },
+            {
+                key: 3,
+                value: "Skyblue",
+                description: "Sky Blue"
+            }
+        ];
+        $scope.colorsWithoutDescription = [];
+        for(var a = 0; a < 255; a = a + 100){
+           for(var b = 0; b < 255; b = b + 100) {
+               for(var c = 0; c< 255; c = c + 100){
+                   $scope.colorsWithoutDescription.push({
+                       key: a.toString() + "-" +b.toString()+ "-" +c.toString(),
+                       value: "rgb(" + a.toString() + "," + b.toString() + "," + c.toString()+")"
+                   });
+               }
+           }
+        }
+        $scope.changeColor1 = function (color) {
+            $scope.model1 = color.key;
+            $scope.selectedColor1 = color;
+        }
+        $scope.changeColor2 = function (color) {
+            $scope.model2 = color.key;
+            $scope.selectedColor2 = color;
+        }
+    }]);
+</script>
+
 <div class="panel panel-default panel-example" ng-controller="BnUiInputCtrl">
     <div class="panel-heading">
         <div class="panel-title">
