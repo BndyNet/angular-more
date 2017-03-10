@@ -16,3 +16,6 @@
         result1 = "Jan 1, 2017 1:02 AM"
         it "#{dt} | appDateTime -> #{result1}", ->
             expect(filter("appDateTime")(arg1)).toEqual result1
+        return
+
+    return

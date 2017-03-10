@@ -111,10 +111,11 @@
             "lib/jquery/dist/jquery.js"
             "lib/moment/min/moment-with-locales.js"
             "lib/angular/angular.js"
+            "lib/angular-sanitize/angular-sanitize.js"
+            "test/lib/angular-mocks.js"
             "lib/angular-date-time-input/src/dateTimeInput.js"
             "lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"
-            "dist/angular-more.js"
-            "test/lib/angular-mocks.js"
+            "dist/angular-more.min.js"
             "test/filters.js"
             "test/directives.js"
           ]
