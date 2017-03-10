@@ -1,6 +1,14 @@
-﻿"use strict"
-
-angular.module "bn.ui.checks", ["ngSanitize"]
+﻿###!
+# Radio or Check Buttons
+#
+# @param {object} ng-model
+# @param {string} label - The label
+# @param {object} source - {"text1": "value", "text2": "value", ...}
+# @param {boolean} multiple - Optional, default false
+# @param {boolean} withIcon - Optional, default false
+#
+###
+angular.module "bn.ui"
     .directive "bnUiChecks", 
     ->
         restrict: "E"
@@ -38,9 +46,9 @@ angular.module "bn.ui.checks", ["ngSanitize"]
                 if scope.multiple then scope.model.indexOf(value) >= 0 else value.toString() == scope.model.toString()
             scope.select = (value) ->
                 if scope.multiple
-                    if scope.model.indexOf(value) < 0 
+                    if scope.model.indexOf(value) < 0
                         scope.model.push(value)
                     else
                         scope.model.splice scope.model.indexOf(value), 1
-                else 
+                else
                     scope.model = value

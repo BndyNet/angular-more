@@ -1,5 +1,6 @@
-"use strict"
 ###!
+# Renders a color-picker control
+#
 # @param {object} ng-colors - e.x. [{key: 1, value: "#ff0000", description: "", css: "flag"}, ...]
 # @param {object} ng-model - type of key
 # @param {function} ng-change - fn(color)
@@ -7,7 +8,7 @@
 # @example
 #   <bn-ui-colorpicker ng-colors="[{}, {}, ...]" ng-model="model" ng-change="changeColor(color)"></bn-ui-colorpicker>
 ###
-angular.module "bn.ui.colorpicker", []
+angular.module "bn.ui"
     .directive "bnUiColorpicker",
         ->
             restrict: "E"

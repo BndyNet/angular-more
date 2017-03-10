@@ -9,7 +9,7 @@
             ' */\n'
     
     clean:
-      dist: "dist"
+      dist: ["temp", "dist"]
       
     usebanner:
       taskName:
@@ -29,7 +29,7 @@
           expand: true
           cwd: "src"
           src: "**/*.coffee"
-          dest: "dist/"
+          dest: "temp/js"
           ext: ".js"
         },{
           expand: true
@@ -61,9 +61,9 @@
       dist:
         files: [{
           expand: true
-          cwd: "src/directives"
-          src: "*.scss"
-          dest: "dist/css"
+          cwd: "src"
+          src: "**/*.scss"
+          dest: "temp/css"
           ext: ".css"
         }, {
           expand: true
@@ -80,9 +80,9 @@
       target:
         files: [{
           expand: true
-          cwd: "dist/css"
+          cwd: "dist"
           src: ["*.css", "!.min.css"]
-          dest: "dist/css"
+          dest: "dist"
           ext: ".min.css"
         }]
         
@@ -91,8 +91,8 @@
         separator: ";"
       dist:
         files:
-          "dist/angular-more.min.js": ["dist/directives/*.min.js", "dist/filters/*.min.js"]
-          "dist/angular-more.min.css": ["dist/css/*.min.css"]
+          "dist/angular-more.js": ["temp/js/bootstrap.js", "temp/js/filters/*.js", "temp/js/directives/*.js"]
+          "dist/angular-more.css": ["temp/css/**/*.css"]
         
     watch:
       scripts:
@@ -130,5 +130,5 @@
   grunt.loadNpmTasks "grunt-banner"
   grunt.loadNpmTasks "grunt-karma"
   
-  grunt.registerTask "default", ["clean", "coffee", "sass", "uglify", "cssmin", "concat", "usebanner"]
+  grunt.registerTask "default", ["clean", "coffee", "sass", "concat", "uglify", "cssmin", "usebanner"]
   grunt.registerTask "test", ["karma"]

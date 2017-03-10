@@ -23,14 +23,26 @@
 
     <script src="../dist/angular-more.min.js"></script>
     <script>
-        var app = angular.module("app", ["bn.filters", "bn.common", "bn.ui.input", "bn.ui.select", "bn.ui.checks", "bn.ui.pager", "bn.ui.colorpicker"]);
+        var app = angular.module("app", ["bn.ui"]);
     </script>
+    <style>
+        .result {
+            border-radius: 4px;
+            padding: 5px 10px;
+            background-color: green;
+            color: white;
+        }
+        .result span {
+            display: inline-block;
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body class="page-article">
 
 <div class="col-md-8 sections">
     <code>
-        angular.module("app", ["bn.filters", "bn.common", "bn.ui.input", "bn.ui.select", "bn.ui.checks", "bn.ui.pager", "bn.ui.colorpicker"]);
+        angular.module("app", ["bn.ui"])
     </code>
 
     <section>
@@ -66,10 +78,16 @@
                 </div>
                 <div class="panel-body">
                     <bn-ui-colorpicker ng-colors="colors" ng-model="model1" ng-change="changeColor1(color)"></bn-ui-colorpicker>
-                    Color Item: <span ng-bind="selectedColor1"></span>
+                    <div class="result">
+                        <i class="glyphicon glyphicon-hand-right"></i>
+                        <span ng-bind="selectedColor1"></span>
+                    </div>
                     <hr />
                     <bn-ui-colorpicker  ng-colors="colorsWithoutDescription" ng-model="model2" ng-change="changeColor2(color)"></bn-ui-colorpicker>
-                    Color Item: <span ng-bind="selectedColor2"></span>
+                    <div class="result">
+                        <i class="glyphicon glyphicon-hand-right"></i>
+                        <span ng-bind="selectedColor2"></span>
+                    </div>
                 </div>
             </div>
             <script>
@@ -169,6 +187,10 @@
                         <bn-ui-select class="col-xs-3" label="Dropdown" ng-model="model.selected"
                                       source="dataSource"></bn-ui-select>
                     </div>
+                    <div class="result">
+                        <i class="glyphicon glyphicon-hand-right"></i>
+                        <span ng-bind="model.selected"></span>
+                    </div>
                 </div>
             </div>
             <script>
@@ -196,20 +218,23 @@
                     <div class="">
                         <bn-ui-checks label="Radio/Checkbox" source="source" ng-model="model" multiple="true"
                                       with-icon="true"></bn-ui-checks>
-                        {{model}}
+                    </div>
+                    <div class="result">
+                        <i class="glyphicon glyphicon-hand-right"></i>
+                        <span> {{model}} </span>
                     </div>
                 </div>
             </div>
             <script>
                 app.controller("BnUiChecksCtrl", ["$scope", function ($scope) {
                     $scope.source = {
-                        "Option 1": "Option 1",
-                        "Option 2": "Option 2",
-                        "Option 3": "Option 3",
-                        "Option 4": "Option 4",
-                        "Option 5": "Option 5",
+                        "Option 1": "1",
+                        "Option 2": "2",
+                        "Option 3": "3",
+                        "Option 4": "4",
+                        "Option 5": "5",
                     };
-                    $scope.model = ["Option 2", "Option 4"];
+                    $scope.model = ["2"];
                 }]);
             </script>
         </section>

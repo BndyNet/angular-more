@@ -1,13 +1,11 @@
-﻿"use strict"
-
-###!
+﻿###!
 # Renders pagination
 #
 # @param {object} ng-model - {recordCount, pageSize, currentPage}
 # @param {function} on-page - function(currentPage) { // here to get data; }
 #
 ###
-angular.module "bn.ui.pager", []
+angular.module "bn.ui"
     .directive "bnUiPager", ->
         restrict: "E"
         template: '''

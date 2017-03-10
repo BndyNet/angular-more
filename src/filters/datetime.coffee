@@ -1,11 +1,9 @@
-﻿"use strict"
-
-###!
+﻿###!
 # angular filters about datetime
 # 
 # @required: moment.js
 ###
-angular.module "bn.filters", []
+angular.module "bn.ui"
     .filter "appDate", ->
         (input) ->
             if moment(input).isValid()

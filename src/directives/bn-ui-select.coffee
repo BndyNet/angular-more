@@ -1,6 +1,11 @@
-﻿"use strict"
-
-angular.module "bn.ui.select", ["ngSanitize"]
+﻿###!
+# Renders a dropdown list
+#
+# @param {string} label
+# @param {object} ng-model
+# @param {object} source - {"Option": "value", ""}
+###
+angular.module "bn.ui"
     .directive "bnUiSelect", [
         ->
             restrict: "E"

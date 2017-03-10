@@ -1,6 +1,10 @@
-﻿"use strict"
-
-angular.module "bn.common", []
+﻿###!
+# Sets same height with parent.
+#
+# @example
+#   <div style="height: 200px"><div bn-fill-height></div></div>
+###
+angular.module "bn.ui"
     .directive "bnFillHeight", [
         ->
             restrict: "A"

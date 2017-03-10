@@ -1,6 +1,4 @@
-﻿"use strict"
-
-###!
+﻿###!
 # Renders an form-group of bootstrap
 # Requires: jQuery v2, moment.js
 # 
@@ -17,7 +15,7 @@
 #       </addon>
 #   </bn-input>
 ###
-angular.module "bn.ui.input", ["ngSanitize", "ui.bootstrap.datetimepicker", "ui.dateTimeInput"]
+angular.module "bn.ui"
     .directive "bnUiInput", [ 
         ->
             restrict: "E"
