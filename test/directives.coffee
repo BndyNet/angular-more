@@ -4,8 +4,7 @@ describe "Directives", ->
     $scope = null
 
     beforeEach ->
-        module "bn.common"
-        module "bn.ui.pager"
+        module "bn.ui"
     beforeEach inject (_$compile_, _$rootScope_) ->
         $rootScope = _$rootScope_
         $scope = $rootScope.$new()

@@ -4,8 +4,7 @@ describe("Directives", function() {
   $rootScope = null;
   $scope = null;
   beforeEach(function() {
-    module("bn.common");
-    return module("bn.ui.pager");
+    return module("bn.ui");
   });
   beforeEach(inject(function(_$compile_, _$rootScope_) {
     $rootScope = _$rootScope_;

@@ -99,7 +99,7 @@
         options:
           spawn: false
         files: ["src/**/*.scss", "src/**/*.coffee", "demo/**/*.coffee", "demo/**/*.scss"]
-        tasks: ["sass", "coffee"]
+        tasks: ["clean", "coffee", "sass", "concat", "uglify", "cssmin", "usebanner"]
 
     karma:
       unit:
@@ -113,7 +113,7 @@
             "lib/angular/angular.js"
             "lib/angular-date-time-input/src/dateTimeInput.js"
             "lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"
-            "dist/angular-more.min.js"
+            "dist/angular-more.js"
             "test/lib/angular-mocks.js"
             "test/filters.js"
             "test/directives.js"
