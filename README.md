@@ -60,7 +60,7 @@ We provide compiled CSS and JS (`angular-more.*`), as well as compiled and minif
 ```
 
 ```js
-var app = angular.module("app", ["ngSanitize", "bn.filters", "bn.ui.input", "bn.ui.select", ...]);
+var app = angular.module("app", ["bn.ui"]);
 ```
 
 
@@ -69,7 +69,7 @@ var app = angular.module("app", ["ngSanitize", "bn.filters", "bn.ui.input", "bn.
 
 
 
-Based on [jasmine](https://jasmine.github.io/).
+Based on [Jasmine](https://jasmine.github.io/) and Karma.
 
 
 
@@ -96,7 +96,7 @@ Based on [jasmine](https://jasmine.github.io/).
 #### bn-ui-select
 
  - ng-model=string
- - source=\{key: value\}
+ - source=\{text: value\}
 
 ```html
 <bn-ui-select class="col-xs-4" label="Dropdown" ng-model="model.dropdown" source="model.source"></bn-ui-select>
@@ -110,7 +110,7 @@ $scope.model = {
 
 #### bn-ui-checks
 
- - source=\{key: value\}
+ - source=\{text: value\}
  - multiple=true/false
  - with-icon=true/false
  - ng-model=object/[]         
@@ -122,13 +122,13 @@ $scope.model = {
 
 ```js
 $scope.source = {
-    "Option 1": "Option 1",
-    "Option 2": "Option 2",
-    "Option 3": "Option 3",
-    "Option 4": "Option 4",
-    "Option 5": "Option 5",
+    "Option 1": "1",
+    "Option 2": "2",
+    "Option 3": "3",
+    "Option 4": "4",
+    "Option 5": "5",
 };
-$scope.model = ["Option 2", "Option 4"];
+$scope.model = ["2", "4"];
 ```
 
 
