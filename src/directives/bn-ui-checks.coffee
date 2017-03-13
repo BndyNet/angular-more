@@ -6,6 +6,7 @@
 # @param {object} source - {"text1": "value", "text2": "value", ...}
 # @param {boolean} multiple - Optional, default false
 # @param {boolean} withIcon - Optional, default false
+# @param {boolean} showButton - Optional, default false
 #
 ###
 angular.module "bn.ui"
@@ -19,12 +20,13 @@ angular.module "bn.ui"
             source: "="
             multiple: "=?"
             withIcon: "=?"
+            showButton: "=?"
         template: '''
             <div class="bn-ui-checks form-group">
                 <label ng-bind-html="label" ng-if="label"></label>
                 <div>
-                    <div class="btn-group">
-                        <label class="btn btn-default" ng-repeat="(key, value) in source" 
+                    <div class="{{showButton ? 'btn-group' : 'form-control-static'}}">
+                        <label ng-class="{'btn btn-default': showButton, 'active': showButton && isExisted(value)}" ng-repeat="(key, value) in source"
                             ng-class="{active: isExisted(value)}" ng-click="select(value)">
 
                             <i class="glyphicon fa fa-fw {{multiple?\'glyphicon-check fa-check-square-o\':\'glyphicon-ok fa-dot-circle-o\'}}" ng-show="isExisted(value) && showIcon()"></i>

@@ -87,8 +87,6 @@
         }]
         
     concat: 
-      options:
-        separator: ";"
       dist:
         files:
           "dist/angular-more.js": ["temp/js/bootstrap.js", "temp/js/filters/*.js", "temp/js/directives/*.js"]

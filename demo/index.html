@@ -211,13 +211,15 @@
             <div class="panel panel-default panel-example" ng-controller="BnUiChecksCtrl">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        @source={key: value}, @multiple=true/false, @with-icon=true/false, @ng-model=object/[]
+                        @source={key: value}, @multiple=true/false, @with-icon=true/false, @ng-model=object/[], @showButton=true/false
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="">
-                        <bn-ui-checks label="Radio/Checkbox" source="source" ng-model="model" multiple="true"
-                                      with-icon="true"></bn-ui-checks>
+                        <bn-ui-checks label="show-button=true" source="source" ng-model="model" multiple="true"
+                                      with-icon="true" show-button="true"></bn-ui-checks>
+                        <bn-ui-checks label="show-button=false" source="source" ng-model="model" multiple="true"
+                                      with-icon="true" show-button="false"></bn-ui-checks>
                     </div>
                     <div class="result">
                         <i class="glyphicon glyphicon-hand-right"></i>

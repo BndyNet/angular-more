@@ -114,9 +114,10 @@ $scope.model = {
  - multiple=true/false
  - with-icon=true/false
  - ng-model=object/[]         
+ - show-button=true/false
 
 ```html
-<bn-ui-checks label="Radio/Checkbox" source="source" ng-model="model" multiple="true" with-icon="true"></bn-ui-checks>
+<bn-ui-checks label="Radio/Checkbox" source="source" ng-model="model" multiple="true" with-icon="true" show-button="true"></bn-ui-checks>
 ```
 
 ```js

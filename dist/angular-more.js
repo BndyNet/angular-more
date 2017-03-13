@@ -5,7 +5,8 @@
 
 "use strict";
 angular.module("bn.ui", ["ngSanitize", "ui.bootstrap.datetimepicker", "ui.dateTimeInput"]);
-;
+
+
 /*!
  * angular filters about datetime
  * 
@@ -42,7 +43,8 @@ angular.module("bn.ui").filter("appDate", function() {
     return "";
   };
 });
-;
+
+
 /*!
  * Radio or Check Buttons
  *
@@ -51,6 +53,7 @@ angular.module("bn.ui").filter("appDate", function() {
  * @param {object} source - {"text1": "value", "text2": "value", ...}
  * @param {boolean} multiple - Optional, default false
  * @param {boolean} withIcon - Optional, default false
+ * @param {boolean} showButton - Optional, default false
  *
  */
 angular.module("bn.ui").directive("bnUiChecks", function() {
@@ -62,9 +65,10 @@ angular.module("bn.ui").directive("bnUiChecks", function() {
       label: "@",
       source: "=",
       multiple: "=?",
-      withIcon: "=?"
+      withIcon: "=?",
+      showButton: "=?"
     },
-    template: '<div class="bn-ui-checks form-group">\n    <label ng-bind-html="label" ng-if="label"></label>\n    <div>\n        <div class="btn-group">\n            <label class="btn btn-default" ng-repeat="(key, value) in source" \n                ng-class="{active: isExisted(value)}" ng-click="select(value)">\n\n                <i class="glyphicon fa fa-fw {{multiple?\'glyphicon-check fa-check-square-o\':\'glyphicon-ok fa-dot-circle-o\'}}" ng-show="isExisted(value) && showIcon()"></i>\n                <i class="glyphicon fa fa-fw {{multiple?\'glyphicon-unchecked fa-square-o\':\'fa-circle-o\'}}" ng-show="!isExisted(value) && showIcon()"></i>\n                <span ng-bind="key"></span>\n            </label>\n        </div>\n    </div>\n</div>',
+    template: '<div class="bn-ui-checks form-group">\n    <label ng-bind-html="label" ng-if="label"></label>\n    <div>\n        <div class="{{showButton ? \'btn-group\' : \'form-control-static\'}}">\n            <label ng-class="{\'btn btn-default\': showButton, \'active\': showButton && isExisted(value)}" ng-repeat="(key, value) in source"\n                ng-class="{active: isExisted(value)}" ng-click="select(value)">\n\n                <i class="glyphicon fa fa-fw {{multiple?\'glyphicon-check fa-check-square-o\':\'glyphicon-ok fa-dot-circle-o\'}}" ng-show="isExisted(value) && showIcon()"></i>\n                <i class="glyphicon fa fa-fw {{multiple?\'glyphicon-unchecked fa-square-o\':\'fa-circle-o\'}}" ng-show="!isExisted(value) && showIcon()"></i>\n                <span ng-bind="key"></span>\n            </label>\n        </div>\n    </div>\n</div>',
     link: function(scope, ele, attrs) {
       if (!scope.model && scope.multiple) {
         scope.model = [];
@@ -106,7 +110,8 @@ angular.module("bn.ui").directive("bnUiChecks", function() {
     }
   };
 });
-;
+
+
 /*!
  * Renders a color-picker control
  *
@@ -142,7 +147,8 @@ angular.module("bn.ui").directive("bnUiColorpicker", function() {
     }
   };
 });
-;
+
+
 /*!
  * Renders an form-group of bootstrap
  * Requires: jQuery v2, moment.js
@@ -200,7 +206,8 @@ angular.module("bn.ui").directive("bnUiInput", [
     };
   }
 ]);
-;
+
+
 /*!
  * Renders pagination
  *
@@ -295,7 +302,8 @@ angular.module("bn.ui").directive("bnUiPager", function() {
     }
   };
 });
-;
+
+
 /*!
  * Renders a dropdown list
  *
@@ -317,7 +325,8 @@ angular.module("bn.ui").directive("bnUiSelect", [
     };
   }
 ]);
-;
+
+
 /*!
  * Sets same height with parent.
  *
