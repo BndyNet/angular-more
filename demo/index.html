@@ -68,6 +68,27 @@
             </div>
         </section>
 
+        <section ng-controller="BnUiSearch">
+            <h3>
+                &lt;bn-ui-search /&gt;
+            </h3>
+            <div class="panel panel-default panel-example">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        bn-ui-search @ng-model @placeholder
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <bn-ui-search ng-model="keywords" placeholder="Search..."></bn-ui-search>
+                </div>
+            </div>
+            <script>
+                app.controller("BnUiSearch", ["$scope", function ($scope) {
+
+                }]);
+            </script>
+        </section>
+
         <section>
             <h3>&lt;bn-ui-colorpicker /&gt;</h3>
             <div class="panel panel-default panel-example" ng-controller="BnUiColorpicker">

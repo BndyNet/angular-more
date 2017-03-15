@@ -25,6 +25,33 @@
       float: none;
       text-align: center; } }
 
+.bn-ui-search {
+  position: relative; }
+  .bn-ui-search > i {
+    position: absolute;
+    top: 10px;
+    left: 15px; }
+  .bn-ui-search > input {
+    padding-left: 35px;
+    padding-right: 30px;
+    border-radius: 2em; }
+  .bn-ui-search > span {
+    position: absolute;
+    right: 15px;
+    top: 8px;
+    display: block;
+    width: 1em;
+    height: 1em;
+    line-height: 1.1em;
+    font-size: 1.25em;
+    text-align: center;
+    border-radius: .5em;
+    background-color: #ddd;
+    color: #333; }
+    .bn-ui-search > span:hover {
+      background-color: #666;
+      color: white; }
+
 .bn-ui-checks .form-control-static label {
   cursor: pointer;
   font-weight: normal;

@@ -303,6 +303,20 @@ angular.module("bn.ui").directive("bnUiPager", function() {
   };
 });
 
+angular.module("bn.ui").directive("bnUiSearch", [
+  function() {
+    return {
+      restrict: "E",
+      replace: true,
+      scope: {
+        model: "=ngModel",
+        placeholder: "@"
+      },
+      template: '<div class="bn-ui-search">\n    <i class="glyphicon glyphicon-search fa fa-search"></i>\n    <input type="text" ng-model="model" class="form-control" placeholder="{{placeholder}}" />\n    <span class="ng-cloak" role="button" ng-show="model" ng-click="model=null">&times;</span>\n</div>'
+    };
+  }
+]);
+
 
 /*!
  * Renders a dropdown list
