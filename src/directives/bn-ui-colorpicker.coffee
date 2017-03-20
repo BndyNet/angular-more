@@ -14,7 +14,7 @@ angular.module "bn.ui"
             restrict: "E"
             replace: true
             scope:
-                ngColors: "=ngColors", ngModel: "=ngModel", onChange: "&ngChange"
+                ngColors: "=ngColors", ngModel: "=ngModel", onChange: "&onChange"
             template: '''
 <span class="bn-ui-colorpicker dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="display: inline-block;">

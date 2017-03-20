@@ -129,7 +129,7 @@ angular.module("bn.ui").directive("bnUiColorpicker", function() {
     scope: {
       ngColors: "=ngColors",
       ngModel: "=ngModel",
-      onChange: "&ngChange"
+      onChange: "&onChange"
     },
     template: '<span class="bn-ui-colorpicker dropdown">\n  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="display: inline-block;">\n      <span class="empty" style="width: 1em; height: 1em; display: inline-block; vertical-align: text-top; border: solid 1px #dedede;" ng-show="ngModel == null || typeof(ngModel) == \'undefined\'"></span>\n      <span style="width: 1em; height: 1em; display: inline-block; vertical-align: text-top;" ng-style="{\'background-color\': color.value}" ng-class="color.css" ng-show="color.key == ngModel" ng-repeat="color in ngColors" title="{{color.description}}"></span>\n  </a>\n  <ul class="dropdown-menu" style="{{inline?\'padding:5px;\':\'\'}}">\n      <li ng-repeat="color in ngColors" style="{{inline?\'float:left;\':\'\'}}">\n          <a role="button" ng-click="onChange({color: color})" style="{{inline?\'padding:3px;\':\'\'}}">\n              <span style="width: 1em; height: 1em; display: inline-block; vertical-align: text-top;" ng-class="color.css" ng-style="{\'background-color\': color.value}"></span>\n              <span ng-bind="color.description"></span>\n          </a>\n      </li>\n  </ul>\n</span>',
     link: function(scope, ele, attrs) {
@@ -336,6 +336,40 @@ angular.module("bn.ui").directive("bnUiSelect", [
         label: "@"
       },
       template: '<div class="bn-ui-select form-group">\n    <label ng-bind-html="label" ng-if="label"></label>\n    <select ng-model="model" class="form-control">\n        <option value="{{value}}" ng-bind="key" ng-repeat="(key, value) in source"></option>\n    </select>\n</div>'
+    };
+  }
+]);
+
+
+/*!
+ * Renders a switch
+ *
+ * @param {object} ng-model - {recordCount, pageSize, currentPage}
+ * @param {function} on-change - function(value) { // here to get data; }
+ *
+ * @example
+ *   <bn-ui-switch ng-model="model" on-change="change(value)"></bn-ui-switch>
+ */
+angular.module("bn.ui").directive("bnUiSwitch", [
+  function() {
+    return {
+      restrict: "E",
+      replace: true,
+      scope: {
+        model: "=ngModel",
+        onChange: "&onChange"
+      },
+      template: '<span class="bn-ui-switch" ng-class="{on: model}" ng-click="change();">\n    <span class="indicator"></span>\n</span>',
+      link: function(scope, ele, attrs) {
+        return scope.change = function() {
+          scope.model = !scope.model;
+          if (angular.isFunction(scope.onChange)) {
+            return scope.onChange({
+              value: scope.model
+            });
+          }
+        };
+      }
     };
   }
 ]);

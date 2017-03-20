@@ -68,6 +68,36 @@
             </div>
         </section>
 
+        <section ng-controller="BnUiSwitch">
+            <h3>&lt;bn-ui-switch /&gt;</h3>
+
+            <div class="panel panel-default panel-example">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        bn-ui-switch @ng-model @on-change=fn(value)
+                    </div>
+                </div>
+                <div class="panel-body">
+                    Default Theme:
+                    <bn-ui-switch ng-model="val" on-change="onchange(value)"></bn-ui-switch>
+                    Circle Theme:
+                    <bn-ui-switch class="circle" ng-model="val" on-change="onchange(value)"></bn-ui-switch>
+                    <div class="result">
+                        <i class="glyphicon glyphicon-hand-right"></i>
+                        <span ng-bind="val"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            app.controller("BnUiSwitch", function($scope) {
+                $scope.val = true;
+                $scope.onchange = function (value) {
+                    console.debug(arguments);
+                }
+            });
+        </script>
+
         <section ng-controller="BnUiSearch">
             <h3>
                 &lt;bn-ui-search /&gt;
@@ -94,17 +124,17 @@
             <div class="panel panel-default panel-example" ng-controller="BnUiColorpicker">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        bn-ui-colorpicker @ng-colors=[{key, value, css, description},...]  @ng-model  @ng-change=fn(color)
+                        bn-ui-colorpicker @ng-colors=[{key, value, css, description},...]  @ng-model  @on-change=fn(color)
                     </div>
                 </div>
                 <div class="panel-body">
-                    <bn-ui-colorpicker ng-colors="colors" ng-model="model1" ng-change="changeColor1(color)"></bn-ui-colorpicker>
+                    <bn-ui-colorpicker ng-colors="colors" ng-model="model1" on-change="changeColor1(color)"></bn-ui-colorpicker>
                     <div class="result">
                         <i class="glyphicon glyphicon-hand-right"></i>
                         <span ng-bind="selectedColor1"></span>
                     </div>
                     <hr />
-                    <bn-ui-colorpicker  ng-colors="colorsWithoutDescription" ng-model="model2" ng-change="changeColor2(color)"></bn-ui-colorpicker>
+                    <bn-ui-colorpicker  ng-colors="colorsWithoutDescription" ng-model="model2" on-change="changeColor2(color)"></bn-ui-colorpicker>
                     <div class="result">
                         <i class="glyphicon glyphicon-hand-right"></i>
                         <span ng-bind="selectedColor2"></span>
@@ -232,7 +262,7 @@
             <div class="panel panel-default panel-example" ng-controller="BnUiChecksCtrl">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        @source={key: value}, @multiple=true/false, @with-icon=true/false, @ng-model=object/[], @showButton=true/false
+                        @source={key: value}, @multiple=true/false, @with-icon=true/false, @ng-model=object/[], @show-button=true/false
                     </div>
                 </div>
                 <div class="panel-body">

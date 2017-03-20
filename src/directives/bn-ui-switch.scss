@@ -1,0 +1,47 @@
+.bn-ui-switch {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    vertical-align: text-bottom;
+    width: 2.7em;
+    height: 1.2em;
+    background-color: rgb(221, 221, 221);
+    border-radius: 3px;
+    transition: .3s ease-in-out;
+
+    & > .indicator {
+        display: block;
+        position: absolute;
+        left: .1em;
+        top: .1em;
+        width: 1em;
+        height: 1em;
+        border-radius: 3px;
+        transition: .3s ease-in-out;
+        background-color: #fff;
+    }
+
+    &.on {
+        background-color: #AEDCAE;
+    }
+
+    &.on > .indicator {
+        background-color: rgb(92, 184, 92);
+        transform: translateX(1.5em);
+    }
+
+    &.circle {
+        vertical-align: text-top;
+        width: 2.5em;
+        height: 1em;
+        border-radius: .5em;
+        box-shadow: 1px 1px 3px #aaa;
+
+        & > .indicator {
+            left: 0;
+            top: 0;
+            border-radius: .5em;
+            box-shadow: 1px 1px 3px #aaa;
+        }
+    }
+}
