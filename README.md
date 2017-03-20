@@ -1,4 +1,4 @@
-﻿# [Angular More](https://github.com/bndynet/angular-more)
+# [Angular More](https://github.com/bndynet/angular-more)
  
 [Demo](http://bndy.net/angular-more/demo/)
 
