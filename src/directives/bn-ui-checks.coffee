@@ -29,8 +29,8 @@ angular.module "bn.ui"
                         <label ng-class="{'btn btn-default': showButton, 'active': showButton && isExisted(value)}" ng-repeat="(key, value) in source"
                             ng-class="{active: isExisted(value)}" ng-click="select(value)">
 
-                            <i class="glyphicon fa fa-fw {{multiple?\'glyphicon-check fa-check-square-o\':\'glyphicon-ok fa-dot-circle-o\'}}" ng-show="isExisted(value) && showIcon()"></i>
-                            <i class="glyphicon fa fa-fw {{multiple?\'glyphicon-unchecked fa-square-o\':\'fa-circle-o\'}}" ng-show="!isExisted(value) && showIcon()"></i>
+                            <i class="glyphicon fa fa-fw {{multiple?\'glyphicon-check fa-check-square-o\':\'glyphicon-check fa-dot-circle-o\'}}" ng-show="isExisted(value) && showIcon()"></i>
+                            <i class="glyphicon fa fa-fw {{multiple?\'glyphicon-unchecked fa-square-o\':\'glyphicon-unchecked fa-circle-o\'}}" ng-show="!isExisted(value) && showIcon()"></i>
                             <span ng-bind="key"></span>
                         </label>
                     </div>

@@ -10,6 +10,7 @@
     <link href="../dist/angular-more.min.css" rel="stylesheet"/>
 
     <script src="../lib/jquery/dist/jquery.js"></script>
+    <script src="https://use.fontawesome.com/f6093069cf.js"></script>
 
     <script src="../lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="http://bndy.net/bootstrap-more/dist/bootstrap-more.js"></script>
@@ -267,9 +268,13 @@
                 </div>
                 <div class="panel-body">
                     <div class="">
-                        <bn-ui-checks label="show-button=true" source="source" ng-model="model" multiple="true"
+                        <bn-ui-checks label="CheckBox: show-button=true" source="source" ng-model="model" multiple="true"
                                       with-icon="true" show-button="true"></bn-ui-checks>
-                        <bn-ui-checks label="show-button=false" source="source" ng-model="model" multiple="true"
+                        <bn-ui-checks label="CheckBox: show-button=false" source="source" ng-model="model" multiple="true"
+                                      with-icon="true" show-button="false"></bn-ui-checks>
+                        <bn-ui-checks label="Radio: show-button=true" source="source" ng-model="rmodel" multiple="false"
+                                      with-icon="true" show-button="true"></bn-ui-checks>
+                        <bn-ui-checks label="Radio: show-button=false" source="source" ng-model="rmodel" multiple="false"
                                       with-icon="true" show-button="false"></bn-ui-checks>
                     </div>
                     <div class="result">
