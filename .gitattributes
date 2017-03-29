@@ -1,4 +1,5 @@
 *.js   linguist-vendored
 *.html linguist-vendored
 *.css  linguist-vendored
+**/lib/*  linguist-vendored
 demo/  linguist-documentation
