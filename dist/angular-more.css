@@ -3,6 +3,34 @@
  * (c) 2014-2017 Bndy.Net (http://www.bndy.net)
  */
 
+.bn-ui-colorpicker > .dropdown-toggle {
+  display: inline-block; }
+  .bn-ui-colorpicker > .dropdown-toggle > span {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    vertical-align: text-top;
+    border-radius: 2px; }
+    .bn-ui-colorpicker > .dropdown-toggle > span.empty {
+      border: solid 1px #dedede; }
+
+.bn-ui-colorpicker > ul.dropdown-menu > li > a > .flag {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: text-top;
+  border-radius: 2px; }
+
+.bn-ui-colorpicker > ul.dropdown-menu.inline {
+  min-width: 9.8em;
+  padding: .25em; }
+  .bn-ui-colorpicker > ul.dropdown-menu.inline > li {
+    float: left; }
+    .bn-ui-colorpicker > ul.dropdown-menu.inline > li > a {
+      padding: .25em; }
+      .bn-ui-colorpicker > ul.dropdown-menu.inline > li > a:focus {
+        border-radius: 2px; }
+
 .bn-ui-pager {
   margin: 10px 0; }
   .bn-ui-pager:after {

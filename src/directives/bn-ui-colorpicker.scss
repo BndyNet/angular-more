@@ -1,0 +1,48 @@
+.bn-ui-colorpicker {
+    & > .dropdown-toggle {
+        display: inline-block;
+
+        & > span {
+            width: 1em;
+            height: 1em;
+            display: inline-block;
+            vertical-align: text-top;
+            border-radius: 2px;
+
+            &.empty {
+                border: solid 1px #dedede;
+            }
+        }
+    }
+
+    & > ul.dropdown-menu {
+        & > li {
+            & > a {
+                & > .flag {
+                    width: 1em;
+                    height: 1em;
+                    display: inline-block;
+                    vertical-align: text-top;
+                    border-radius: 2px;
+                }
+            }
+        }
+
+        &.inline {
+            min-width: 1.5em*6 + 0.8em;
+            padding: .25em;
+
+            & > li {
+                float: left;
+
+                & > a {
+                    padding: .25em;
+
+                    &:focus {
+                        border-radius: 2px;
+                    }
+                }
+            }
+        }
+    }
+}
