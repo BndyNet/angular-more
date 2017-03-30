@@ -1,2 +1,3 @@
-lib/* linguist-vendored
-demo/* linguist-documentation
+**/lib/*  linguist-vendored
+*.html   linguist-vendored
+**/demo/*  linguist-documentation
