@@ -1,5 +1,5 @@
 /*!
- * angular-more v2.0.0 (https://github.com/BndyNet/angular-more#readme)
+ * @bndynet/angular-more v2.0.0 (https://github.com/BndyNet/angular-more#readme)
  * (c) 2014-2017 Bndy.Net (http://www.bndy.net)
  */
 
@@ -218,7 +218,7 @@ angular.module("bn.ui").directive("bnUiInput", [
 angular.module("bn.ui").directive("bnUiPager", function() {
   return {
     restrict: "E",
-    template: '<div class="bn-ui-pager" ng-show="model.recordCount > 0">\n    <div class="summary" ng-show="showSummary">\n        <span ng-bind="(model.currentPage - 1) * model.pageSize + 1"></span>\n        - <span ng-bind="model.currentPage * model.pageSize > model.recordCount ? model.recordCount : model.currentPage * model.pageSize"></span>\n        / <span ng-bind="model.recordCount"></span>\n    </div>\n    <nav aria-label="Page navigation">\n      <ul class="pagination" ng-show="model.pageCount > 1">\n        <li ng-class="{disabled: model.currentPage == 1}">\n          <a href="#" aria-label="Previous" ng-click="page(model.currentPage-1)">\n            <span aria-hidden="true">&laquo;</span>\n          </a>\n        </li>\n        <li ng-repeat="p in model.displayPageNumbers track by $index" ng-class="{active: model.currentPage == p, disabled: p < 0}">\n          <a href="#" ng-show="p > 0" ng-click="page(p)"><span ng-bind="p"></span></a>\n          <a href="#" ng-show="p < 0">...</a>\n        </li>\n        <li ng-class="{disabled: model.currentPage == model.pageCount}">\n          <a href="#" aria-label="Next" ng-click="page(model.currentPage+1)">\n            <span aria-hidden="true">&raquo;</span>\n          </a>\n        </li>\n      </ul>\n    </nav>\n</div>',
+    template: '<div class="bn-ui-pager" ng-show="model.recordCount > 0">\n    <div class="summary" ng-show="showSummary">\n        <span ng-bind="(model.currentPage - 1) * model.pageSize + 1"></span>\n        - <span ng-bind="model.currentPage * model.pageSize > model.recordCount ? model.recordCount : model.currentPage * model.pageSize"></span>\n        / <span ng-bind="model.recordCount"></span>\n    </div>\n    <nav aria-label="Page navigation">\n      <ul class="pagination" ng-show="model.pageCount > 1">\n        <li ng-class="{disabled: model.currentPage == 1}">\n          <a aria-label="Previous" ng-click="page(model.currentPage-1)">\n            <span aria-hidden="true">&laquo;</span>\n          </a>\n        </li>\n        <li ng-repeat="p in model.displayPageNumbers track by $index" ng-class="{active: model.currentPage == p, disabled: p < 0}">\n          <a ng-show="p > 0" ng-click="page(p)"><span ng-bind="p"></span></a>\n          <a ng-show="p < 0">...</a>\n        </li>\n        <li ng-class="{disabled: model.currentPage == model.pageCount}">\n          <a aria-label="Next" ng-click="page(model.currentPage+1)">\n            <span aria-hidden="true">&raquo;</span>\n          </a>\n        </li>\n      </ul>\n    </nav>\n</div>',
     replace: true,
     scope: {
       model: "=ngModel",
