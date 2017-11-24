@@ -18,16 +18,16 @@ angular.module "bn.ui"
         <nav aria-label="Page navigation">
           <ul class="pagination" ng-show="model.pageCount > 1">
             <li ng-class="{disabled: model.currentPage == 1}">
-              <a href="#" aria-label="Previous" ng-click="page(model.currentPage-1)">
+              <a aria-label="Previous" ng-click="page(model.currentPage-1)">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
             <li ng-repeat="p in model.displayPageNumbers track by $index" ng-class="{active: model.currentPage == p, disabled: p < 0}">
-              <a href="#" ng-show="p > 0" ng-click="page(p)"><span ng-bind="p"></span></a>
-              <a href="#" ng-show="p < 0">...</a>
+              <a ng-show="p > 0" ng-click="page(p)"><span ng-bind="p"></span></a>
+              <a ng-show="p < 0">...</a>
             </li>
             <li ng-class="{disabled: model.currentPage == model.pageCount}">
-              <a href="#" aria-label="Next" ng-click="page(model.currentPage+1)">
+              <a aria-label="Next" ng-click="page(model.currentPage+1)">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>
