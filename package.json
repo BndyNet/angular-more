@@ -1,6 +1,6 @@
 {
   "name": "@bndynet/angular-more",
-  "version": "2.0.1",
+  "version": "2.1.1",
   "description": "Extensions for angular",
   "main": "index.js",
   "scripts": {

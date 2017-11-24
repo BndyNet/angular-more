@@ -1,5 +1,5 @@
 /*!
- * @bndynet/angular-more v2.0.0 (https://github.com/BndyNet/angular-more#readme)
+ * @bndynet/angular-more v2.1.1 (https://github.com/BndyNet/angular-more#readme)
  * (c) 2014-2017 Bndy.Net (http://www.bndy.net)
  */
 
@@ -229,14 +229,16 @@ angular.module("bn.ui").directive("bnUiPager", function() {
         scope.model = {};
       }
       scope.showSummary = typeof attrs["showSummary"] !== "undefined" ? attrs["showSummary"] === "true" : true;
-      if (typeof scope.model.pageCount === "undefined") {
-        scope.model.pageCount = Math.ceil(scope.model.recordCount / scope.model.pageSize);
-      }
-      scope.computePageNumbers = function() {
+      scope.$watch("model", function(newValue, oldValue) {
         var i, j, k, l, len, len1, m, n, o, p, q, ref, ref1, ref10, ref2, ref3, ref4, ref5, ref6, ref7, ref8, ref9;
-        if (scope.needComputePageNumber || typeof scope.model.displayPageNumbers === "undefined") {
+        if (!newValue) {
+          return;
+        }
+        if (typeof scope.model.pageCount === "undefined") {
+          scope.model.pageCount = Math.ceil(scope.model.recordCount / scope.model.pageSize);
+        }
+        if (typeof scope.model.displayPageNumbers === "undefined") {
           scope.model.displayPageNumbers = [];
-          scope.needComputePageNumber = true;
           if (scope.model.pageCount <= 10) {
             for (p = i = 1, ref = scope.model.pageCount; 1 <= ref ? i <= ref : i >= ref; p = 1 <= ref ? ++i : --i) {
               scope.model.displayPageNumbers.push(p);
@@ -277,7 +279,7 @@ angular.module("bn.ui").directive("bnUiPager", function() {
             }
           }
         }
-      };
+      });
       scope.page = function(p) {
         if (p <= 0) {
           p = 1;
@@ -292,13 +294,8 @@ angular.module("bn.ui").directive("bnUiPager", function() {
             });
           }
           scope.model.currentPage = p;
-          scope.computePageNumbers();
         }
       };
-      scope.$on("onModelChanged", function() {
-        return scope.computePageNumbers();
-      });
-      scope.computePageNumbers();
     }
   };
 });

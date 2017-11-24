@@ -42,12 +42,12 @@ angular.module "bn.ui"
         link: (scope, ele, attrs) ->
             scope.model = {} if typeof(scope.model) is "undefined"
             scope.showSummary = if typeof(attrs["showSummary"]) isnt "undefined" then attrs["showSummary"] is "true" else true
-            scope.model.pageCount = Math.ceil(scope.model.recordCount / scope.model.pageSize) if typeof scope.model.pageCount is "undefined"
 
-            scope.computePageNumbers = ->
-                if scope.needComputePageNumber or typeof(scope.model.displayPageNumbers) is "undefined"
+            scope.$watch "model", (newValue, oldValue) -> 
+                return if not newValue
+                scope.model.pageCount = Math.ceil(scope.model.recordCount / scope.model.pageSize) if typeof scope.model.pageCount is "undefined"
+                if typeof(scope.model.displayPageNumbers) is "undefined"
                     scope.model.displayPageNumbers = []
-                    scope.needComputePageNumber = true
                     if scope.model.pageCount <= 10
                         scope.model.displayPageNumbers.push p for p in [1..scope.model.pageCount]
                     else
@@ -72,12 +72,7 @@ angular.module "bn.ui"
                 p = scope.model.pageCount if p > scope.model.pageCount
                 if scope.model.currentPage isnt p
                     scope.onPage {page:p} if scope.onPage
-                    scope.model.currentPage = p
-                    scope.computePageNumbers()
+                    scope.model.currentPage = p 
                 return
 
-            scope.$on "onModelChanged", ->
-                scope.computePageNumbers()
-
-            scope.computePageNumbers()
             return
