@@ -47,16 +47,20 @@ angular-more/
 └── src/
 ```
 
-We provide compiled CSS and JS (`angular-more.*`), as well as compiled and minified CSS and JS (`angular-more.min.*`). 
-
-
 ### Usage
 
 ```html
+<link href="lib/angular-bootstrap-datetimepicker/src/css/datetimepicker.css" rel="stylesheet"/>
 <!-- Latest compiled and minified CSS -->
-<link href="angular-more/dist/angular-more.min.css" rel="stylesheet"/>
+<link href="dist/angular-more.min.css" rel="stylesheet"/>
+
+<script src="lib/moment/min/moment.min.js"></script>
+<script src="lib/angular/angular.min.js"></script>
+<script src="lib/angular-date-time-input/src/dateTimeInput.js"></script>
+<script src="lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+<script src="lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
 <!-- Latest compiled and minified JavaScript -->
-<script src="angular-more/dist/angular-more.min.js"></script>
+<script src="dist/angular-more.min.js"></script>
 ```
 
 ```js
