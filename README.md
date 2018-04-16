@@ -1,8 +1,18 @@
 # [Angular More](https://github.com/bndynet/angular-more)
  
-[Demo](http://bndy.net/angular-more/demo/)
+[Demo](https://bndynet.github.io/angular-more/demo/index.html)
 
 This is the extensions about directives, filters for AngularJS.
+
+## Changelog
+
+### v2.2.5
+
+- Update documentation and demo
+
+### v2.2.0
+
+- New directives: bn-ui-loading, bn-ui-html-editor
 
 
 ## Dependencies
@@ -146,8 +156,6 @@ $scope.model = ["2", "4"];
 <bn-ui-pager ng-model="{currentPage: 1, pageSize: 10, recordCount: 108 }" on-page="getData(page)"></bn-ui-pager>
 
 ```
-
-
 
 
 ## Copyright and license
