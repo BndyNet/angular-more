@@ -21,9 +21,9 @@ choices=( 'patch' 'minor' 'major' )
 select choice in "${choices[@]}"; do
   [[ -n $choice ]] || { echo "Invalid choice." >&2; continue; }
 
-  git add .
-  git commit -m "NPM: autocommit for publishing new version"
-  git push
+  # git add .
+  # git commit -m "NPM: autocommit for publishing new version"
+  # git push
 
   case $choice in
     patch)
