@@ -1,6 +1,6 @@
 /*!
- * @bndynet/angular-more v2.1.1 (https://github.com/BndyNet/angular-more#readme)
- * (c) 2014-2017 Bndy.Net (http://www.bndy.net)
+ * @bndynet/angular-more v2.2.3 (https://github.com/bndynet/angular-more#readme)
+ * (c) 2014-2018 Bndy.Net (http://bndy.net)
  */
 
 .bn-ui-colorpicker > .dropdown-toggle {
@@ -30,6 +30,55 @@
       padding: .25em; }
       .bn-ui-colorpicker > ul.dropdown-menu.inline > li > a:focus {
         border-radius: 2px; }
+
+@-webkit-keyframes ui-loading-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0); }
+  40% {
+    -webkit-transform: scale(1); } }
+
+@keyframes ui-loading-bouncedelay {
+  0%,
+  80%,
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0); }
+  40% {
+    -webkit-transform: scale(1);
+    transform: scale(1); } }
+
+[bn-ui-loading] {
+  position: relative;
+  min-width: 50px; }
+  [bn-ui-loading] .in-process {
+    display: table;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0; }
+    [bn-ui-loading] .in-process > div {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center; }
+      [bn-ui-loading] .in-process > div i {
+        width: 1rem;
+        height: 1rem;
+        background-color: #ffffff;
+        margin: 0 0.3rem;
+        border-radius: 100%;
+        display: inline-block;
+        -webkit-animation: ui-loading-bouncedelay 1.4s infinite ease-in-out both;
+        animation: ui-loading-bouncedelay 1.4s infinite ease-in-out both; }
+      [bn-ui-loading] .in-process > div .bounce1 {
+        -webkit-animation-delay: -0.32s;
+        animation-delay: -0.32s; }
+      [bn-ui-loading] .in-process > div .bounce2 {
+        -webkit-animation-delay: -0.16s;
+        animation-delay: -0.16s; }
 
 .bn-ui-pager {
   margin: 10px 0; }

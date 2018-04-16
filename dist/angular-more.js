@@ -1,6 +1,6 @@
 /*!
- * @bndynet/angular-more v2.1.1 (https://github.com/BndyNet/angular-more#readme)
- * (c) 2014-2017 Bndy.Net (http://www.bndy.net)
+ * @bndynet/angular-more v2.2.3 (https://github.com/bndynet/angular-more#readme)
+ * (c) 2014-2018 Bndy.Net (http://bndy.net)
  */
 
 "use strict";
@@ -150,6 +150,45 @@ angular.module("bn.ui").directive("bnUiColorpicker", function() {
 
 
 /*!
+ * Html Editor
+ *
+ * @example
+ *   <bn-ui-html-editor ng-model="content"></bn-ui-html-editor>
+ */
+angular.module("bn.ui").directive("bnUiHtmlEditor", function() {
+  return {
+    restrict: "E",
+    require: '?ngModel',
+    link: function(scope, elem, attrs, ngModel) {
+      var ck, updateModel;
+      if (typeof CKEDITOR === 'undefined') {
+        throw new Error('Can not find CKEDITOR');
+      }
+      CKEDITOR.config.height = 360;
+      ck = CKEDITOR.replace(elm[0]);
+      if (!ngModel) {
+        return;
+      }
+      ck.on('instanceReady', function() {
+        return ck.setData(ngModel.$viewValue);
+      });
+      updateModel = function() {
+        return scope.$apply(function() {
+          return ngModel.$setViewValue(ck.getData());
+        });
+      };
+      ck.on('change', updateModel);
+      ck.on('key', updateModel);
+      ck.on('dataReady', updateModel);
+      ngModel.$render = function(value) {
+        return ck.setData(ngModel.$viewValue);
+      };
+    }
+  };
+});
+
+
+/*!
  * Renders an form-group of bootstrap
  * Requires: jQuery v2, moment.js
  * 
@@ -202,6 +241,49 @@ angular.module("bn.ui").directive("bnUiInput", [
         if (attrs.required === "" || attrs.required === "true") {
           return ele.find("input").attr("required", true);
         }
+      }
+    };
+  }
+]);
+
+
+/*!
+ * Loading status for element
+ *
+ * @example
+ *   <button class="btn btn-danger" bn-ui-loading="isLoading">Save</button>
+ */
+angular.module("bn.ui").directive("bnUiLoading", [
+  "$compile", function($compile) {
+    return {
+      restrict: "A",
+      link: function(scope, elem, attrs) {
+        var children;
+        elem.css('width', elem.outerWidth());
+        elem.css('height', elem.outerHeight());
+        children = $compile(elem.contents())(scope);
+        scope.$watch(attrs.bnUiLoading, function(value) {
+          elem.attr("disabled", value);
+          if (value) {
+            elem.prepend('<div class="in-process"><div><i class="bounce1"></i><i class="bounce2"></i><i class="bounce3"></i></div></div>');
+            return angular.forEach(children, function(child) {
+              if (angular.element(child)[0].nodeName === '#text') {
+                return angular.element(child).remove();
+              } else {
+                return angular.element(child).css("visibility", "hidden");
+              }
+            });
+          } else {
+            angular.element(document.querySelector(".in-process")).remove();
+            return angular.forEach(children, function(child) {
+              if (angular.element(child)[0].nodeName === '#text') {
+                return elem.append(child);
+              } else {
+                return angular.element(child).css("visibility", "visible");
+              }
+            });
+          }
+        });
       }
     };
   }

@@ -2,13 +2,13 @@
  
 [Demo](http://bndy.net/angular-more/demo/)
 
-This is the extensions about directives, filters for Angular.
+This is the extensions about directives, filters for AngularJS.
 
 
 ## Dependencies
 
 Requires:
- - angular
+ - angularjs
  - angular-sanitize
  - angular-date-time-input
  - angular-bootstrap-datetimepicker

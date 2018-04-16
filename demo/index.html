@@ -49,6 +49,42 @@
     <section>
         <h3>Directives</h3>
 
+        <section ng-controller="BnUiLoading">
+            <h4>
+                @bn-ui-loading
+            </h4>
+            <div class="panel panel-default panel-example">
+                <div class="panel-body">
+                   <button class="btn btn-primary" 
+                        ng-click="submit()"
+                        bn-ui-loading="loading" style="border: 2px #00ff00 solid; padding: 20px; margin: 20px; height: 100px; width: 200px;">
+                       <i class="fa fa-save fa-fw"></i>
+                        Submit
+                    </button>
+                   <button class="btn btn-danger" bn-ui-loading="loading" ng-click="submit()">S</button>
+
+                   <div bn-ui-loading="loading" class="bg-success">
+                       <br>
+                       <br>
+                      <p>Placeholder for data</p>
+                       <br>
+                       <br>
+                       <br>
+                   </div>
+
+                   <bn-ui-html-editor ng-model="content"></bn-ui-html-editor>
+                </div>
+            </div>
+        </section>
+        <script>
+            app.controller("BnUiLoading", ["$scope", "$timeout", function ($scope, $timeout) {
+                $scope.loading = false;
+                $scope.submit = function() {
+                    $scope.loading = true;
+                }
+            }]);
+        </script>
+
         <section>
             <h4>
                 @bn-fill-height

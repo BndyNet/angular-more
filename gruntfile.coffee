@@ -5,7 +5,7 @@
     
     banner: '/*!\n' +
             ' * <%= pkg.name %> v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
-            ' * (c) 2014-<%= grunt.template.today("yyyy") %> Bndy.Net (http://www.bndy.net)\n' + 
+            ' * (c) 2014-<%= grunt.template.today("yyyy") %> Bndy.Net (http://bndy.net)\n' + 
             ' */\n'
     
     clean:
