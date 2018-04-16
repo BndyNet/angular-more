@@ -16,7 +16,7 @@ echo "Old Version: " $PROJECT_VERSION
 echo Publish to npm registry ...
 echo Please specify the version type:
 
-choices=( 'patch' 'minor' 'major' )
+choices=( 'NONE' 'patch' 'minor' 'major' )
 
 select choice in "${choices[@]}"; do
   [[ -n $choice ]] || { echo "Invalid choice." >&2; continue; }
@@ -26,6 +26,9 @@ select choice in "${choices[@]}"; do
   git push
 
   case $choice in
+    NONE)
+      echo "Begin to publish using current version ..."
+      ;;
     patch)
       echo "Begin to publish patch version ..."
       npm version patch

@@ -1,5 +1,5 @@
 /*!
- * @bndynet/angular-more v2.2.4 (https://github.com/bndynet/angular-more#readme)
+ * @bndynet/angular-more v2.2.5 (https://github.com/bndynet/angular-more#readme)
  * (c) 2014-2018 Bndy.Net (http://bndy.net)
  */
 
