@@ -1,0 +1,36 @@
+bn-ui-select {
+    a:hover,
+    a:focus {
+        text-decoration: none;
+    }
+    .form-control {
+        padding-top: 5px;
+
+        .label {
+            margin-right: .5rem;
+        }
+
+        .caret {
+            float: right;
+            margin-top: 9px;
+        }
+    }
+
+    .dropdown-menu {
+        top: 0;
+        left: 14px;
+        width: calc(100% - 28px);
+
+        li > a {
+            position: relative;
+            i {
+                position: absolute;
+                top: 6px;
+            }
+            span {
+                display: inline-block;
+                margin-left: 24px;
+            }
+        }
+    }
+}

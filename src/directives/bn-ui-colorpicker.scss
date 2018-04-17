@@ -1,5 +1,5 @@
-.bn-ui-colorpicker {
-    & > .dropdown-toggle {
+bn-ui-colorpicker {
+    .dropdown-toggle {
         display: inline-block;
 
         & > span {
@@ -15,7 +15,7 @@
         }
     }
 
-    & > ul.dropdown-menu {
+    ul.dropdown-menu {
         & > li {
             & > a {
                 & > .flag {

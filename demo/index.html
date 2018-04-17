@@ -62,8 +62,9 @@
                         Submit
                     </button>
                    <button class="btn btn-danger" bn-ui-loading="loading" ng-click="submit()">S</button>
+                   <a class="btn btn-danger" bn-ui-loading="loading" ng-click="submit()">Submit</a>
 
-                   <div bn-ui-loading="loading" class="bg-success">
+                   <div bn-ui-loading="loading" class="bg-success" style="padding: 30px;">
                        <br>
                        <br>
                       <p>Placeholder for data</p>
@@ -109,14 +110,14 @@
             <div class="panel panel-default panel-example">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        bn-ui-switch @ng-model @on-change=fn(value)
+                        bn-ui-switch @nb-model, @nb-on-change=fn(data)
                     </div>
                 </div>
                 <div class="panel-body">
                     Default Theme:
-                    <bn-ui-switch ng-model="val" on-change="onchange(value)"></bn-ui-switch>
+                    <bn-ui-switch nb-model="val" nb-on-change="onchange(data)"></bn-ui-switch>
                     Circle Theme:
-                    <bn-ui-switch class="circle" ng-model="val" on-change="onchange(value)"></bn-ui-switch>
+                    <bn-ui-switch class="circle" nb-model="val" nb-on-change="onchange(data)"></bn-ui-switch>
                     <div class="result">
                         <i class="glyphicon glyphicon-hand-right"></i>
                         <span ng-bind="val"></span>
@@ -140,16 +141,18 @@
             <div class="panel panel-default panel-example">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        bn-ui-search @ng-model @placeholder
+                        bn-ui-search @nb-model, @nb-placeholder, @nb-on-change=fn(data)
                     </div>
                 </div>
                 <div class="panel-body">
-                    <bn-ui-search ng-model="keywords" placeholder="Search..."></bn-ui-search>
+                    <bn-ui-search nb-model="keywords" nb-placeholder="Search..." nb-on-change="searchChange(data)"></bn-ui-search>
                 </div>
             </div>
             <script>
                 app.controller("BnUiSearch", ["$scope", function ($scope) {
-
+                    $scope.searchChange = function(k) {
+                        console.debug(k);
+                    };
                 }]);
             </script>
         </section>
@@ -159,17 +162,17 @@
             <div class="panel panel-default panel-example" ng-controller="BnUiColorpicker">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        bn-ui-colorpicker @ng-colors=[{key, value, css, description},...]  @ng-model  @on-change=fn(color)
+                        bn-ui-colorpicker @nb-colors=[{key, value, css, description},...]  @nb-model  @nb-on-change=fn(data)
                     </div>
                 </div>
                 <div class="panel-body">
-                    <bn-ui-colorpicker ng-colors="colors" ng-model="model1" on-change="changeColor1(color)"></bn-ui-colorpicker>
+                    <bn-ui-colorpicker nb-colors="colors" nb-model="model1" nb-on-change="changeColor1(data)"></bn-ui-colorpicker>
                     <div class="result">
                         <i class="glyphicon glyphicon-hand-right"></i>
                         <span ng-bind="selectedColor1"></span>
                     </div>
                     <hr />
-                    <bn-ui-colorpicker  ng-colors="colorsWithoutDescription" ng-model="model2" on-change="changeColor2(color)"></bn-ui-colorpicker>
+                    <bn-ui-colorpicker  nb-colors="colorsWithoutDescription" nb-model="model2" nb-on-change="changeColor2(data)"></bn-ui-colorpicker>
                     <div class="result">
                         <i class="glyphicon glyphicon-hand-right"></i>
                         <span ng-bind="selectedColor2"></span>
@@ -211,13 +214,13 @@
                             }
                         }
                     }
-                    $scope.changeColor1 = function (color) {
-                        $scope.model1 = color.key;
-                        $scope.selectedColor1 = color;
+                    $scope.changeColor1 = function (data) {
+                        $scope.model1 = data.key;
+                        $scope.selectedColor1 = data;
                     }
-                    $scope.changeColor2 = function (color) {
-                        $scope.model2 = color.key;
-                        $scope.selectedColor2 = color;
+                    $scope.changeColor2 = function (data) {
+                        $scope.model2 = data.key;
+                        $scope.selectedColor2 = data;
                     }
                 }]);
             </script>
@@ -265,27 +268,51 @@
             <div class="panel panel-default panel-example" ng-controller="BnUiSelectCtrl">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        @source={key: value}
+                        @nb-source=[], @nb-label, @nb-model
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <bn-ui-select class="col-xs-3" label="Dropdown" ng-model="model.selected"
-                                      source="dataSource"></bn-ui-select>
+                        <bn-ui-select class="col-xs-3" nb-label="Multiple Selection" nb-model="mModel"
+                                      nb-placeholder="----- Please select -----"
+                                      nb-text-field="label"
+                                      nb-value-field="value"
+                                      nb-multiple="true"
+                                      nb-on-change="change(data)"
+                                      nb-source="dataSource"></bn-ui-select>
                     </div>
                     <div class="result">
                         <i class="glyphicon glyphicon-hand-right"></i>
-                        <span ng-bind="model.selected"></span>
+                        <span ng-bind="mModel"></span>
+                    </div>
+                    <div class="row">
+                        <bn-ui-select class="col-xs-4" nb-label="Single Selection" nb-model="sModel"
+                                        nb-placeholder="----- Please select -----"
+                                        nb-text-field="label"
+                                        nb-value-field="value"
+                                        nb-multiple="false"
+                                        nb-on-change="change(data)"
+                                        nb-source="dataSource1"></bn-ui-select>
+                    </div>
+                    <div class="result">
+                        <i class="glyphicon glyphicon-hand-right"></i>
+                        <span ng-bind="sModel"></span>
                     </div>
                 </div>
             </div>
             <script>
                 app.controller("BnUiSelectCtrl", ["$scope", function ($scope) {
-                    $scope.dataSource = {
-                        "Option 1": 1,
-                        "Option 2": 2
-                    };
-                    $scope.model = {selected: "2"};
+                    $scope.dataSource = [{
+                        label: 'opt 1', value: 1
+                    }, {
+                        label: 'opt 2', value: 2
+                    }];
+                    $scope.dataSource1 = angular.copy($scope.dataSource);
+                    $scope.mModel = [2];
+                    $scope.sModel = 1;
+                    $scope.change = function(data) {
+                        console.debug(data);
+                    }
                 }]);
             </script>
         </section>
@@ -297,36 +324,54 @@
             <div class="panel panel-default panel-example" ng-controller="BnUiChecksCtrl">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        @source={key: value}, @multiple=true/false, @with-icon=true/false, @ng-model=object/[], @show-button=true/false
+                        @nb-source=[], @nb-key-field="", @nb-multiple=true/false, @nb-with-icon=true/false, @nb-model=object/[], @nb-show-button=true/false, @nb-on-change=fn(data)
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="">
-                        <bn-ui-checks label="CheckBox: show-button=true" source="source" ng-model="model" multiple="true"
-                                      with-icon="true" show-button="true"></bn-ui-checks>
-                        <bn-ui-checks label="CheckBox: show-button=false" source="source" ng-model="model" multiple="true"
-                                      with-icon="true" show-button="false"></bn-ui-checks>
-                        <bn-ui-checks label="Radio: show-button=true" source="source" ng-model="rmodel" multiple="false"
-                                      with-icon="true" show-button="true"></bn-ui-checks>
-                        <bn-ui-checks label="Radio: show-button=false" source="source" ng-model="rmodel" multiple="false"
-                                      with-icon="true" show-button="false"></bn-ui-checks>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" ng-model="showButton"> Show button group
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" ng-model="showIcon"> Show icon
+                        </label>
+                        <br /><br />
+                        <bn-ui-checks nb-label="CheckBox" nb-source="source" nb-model="mModel" nb-multiple="true"
+                                      nb-text-field="label"
+                                      nb-value-field="value"
+                                      nb-on-change="change(data)"
+                                      nb-with-icon="showIcon" nb-show-button="showButton"></bn-ui-checks>
+                        <div class="result">
+                            <i class="glyphicon glyphicon-hand-right"></i>
+                            <span> {{mModel}} </span>
+                        </div>
+
+                        <bn-ui-checks nb-label="Radio" nb-source="source" nb-model="sModel" nb-multiple="false"
+                                      nb-text-field="label"
+                                      nb-value-field="value"
+                                      nb-on-change="change(data)"
+                                      nb-with-icon="showIcon" nb-show-button="showButton"></bn-ui-checks>
                     </div>
                     <div class="result">
                         <i class="glyphicon glyphicon-hand-right"></i>
-                        <span> {{model}} </span>
+                        <span> {{sModel}} </span>
                     </div>
                 </div>
             </div>
             <script>
                 app.controller("BnUiChecksCtrl", ["$scope", function ($scope) {
-                    $scope.source = {
-                        "Option 1": "1",
-                        "Option 2": "2",
-                        "Option 3": "3",
-                        "Option 4": "4",
-                        "Option 5": "5",
+                    $scope.source = [
+                        {label: "Option 1", value: "1"},
+                        {label: "Option 2", value: "2"},
+                        {label: "Option 3", value: "3"},
+                        {label: "Option 4", value: "4"},
+                        {label: "Option 5", value: "5"},
+                    ];
+                    $scope.change = function(data) {
+                        console.debug(data);
                     };
-                    $scope.model = ["2"];
+                    $scope.mModel = ["2"];
+                    $scope.sModel = "2";
                 }]);
             </script>
         </section>

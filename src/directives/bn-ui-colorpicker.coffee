@@ -1,29 +1,28 @@
 ###!
 # Renders a color-picker control
 #
-# @param {object} ng-colors - e.x. [{key: 1, value: "#ff0000", description: "", css: "flag"}, ...]
-# @param {object} ng-model - type of key
-# @param {function} ng-change - fn(color)
+# @param {object} nb-colors - e.x. [{key: 1, value: "#ff0000", description: "", css: "flag"}, ...]
+# @param {object} nb-model - type of key
+# @param {function} nb-on-change - fn(data)
 #
 # @example
-#   <bn-ui-colorpicker ng-colors="[{}, {}, ...]" ng-model="model" ng-change="changeColor(color)"></bn-ui-colorpicker>
+#   <bn-ui-colorpicker nb-colors="[{}, {}, ...]" nb-model="model" nb-on-change="changeColor(color)"></bn-ui-colorpicker>
 ###
 angular.module "bn.ui"
     .directive "bnUiColorpicker",
         ->
             restrict: "E"
-            replace: true
             scope:
-                ngColors: "=ngColors", ngModel: "=ngModel", onChange: "&onChange"
+                nbColors: "=", nbModel: "=?", nbOnChange: "&?"
             template: '''
-<span class="bn-ui-colorpicker dropdown">
+<span class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-      <span class="empty" ng-show="ngModel == null || typeof(ngModel) == 'undefined'"></span>
-      <span ng-style="{'background-color': color.value}" ng-class="color.css" ng-show="color.key == ngModel" ng-repeat="color in ngColors" title="{{color.description}}"></span>
+      <span class="empty" ng-show="nbModel == null || typeof(nbModel) == 'undefined'"></span>
+      <span ng-style="{'background-color': color.value}" ng-class="color.css" ng-show="color.key == nbModel" ng-repeat="color in nbColors" title="{{color.description}}"></span>
   </a>
   <ul class="dropdown-menu" ng-class="{inline: inline}">
-      <li ng-repeat="color in ngColors">
-          <a role="button" ng-click="onChange({color: color})">
+      <li ng-repeat="color in nbColors">
+          <a role="button" ng-click="nbOnChange({data: color})">
               <span class="flag" style="" ng-class="color.css" ng-style="{'background-color': color.value}"></span>
               <span ng-bind="color.description"></span>
           </a>
@@ -33,7 +32,7 @@ angular.module "bn.ui"
 '''
             link: (scope, ele, attrs) ->
                 inline = true
-                for c in scope.ngColors
+                for c in scope.nbColors
                     if c.description
                         inline = false
                         break

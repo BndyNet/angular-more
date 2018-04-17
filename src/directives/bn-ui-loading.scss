@@ -33,6 +33,9 @@
     height: 100%;
     top: 0;
     left: 0;
+    &.opacity-lg {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
     &>div {
       display: table-cell;
       vertical-align: middle;

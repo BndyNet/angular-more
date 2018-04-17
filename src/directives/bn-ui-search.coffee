@@ -2,15 +2,15 @@ angular.module "bn.ui"
     .directive "bnUiSearch", [
         ->
             restrict: "E"
-            replace: true
             scope:
-                model: "=ngModel"
-                placeholder: "@"
+                nbModel: "="
+                nbPlaceholder: "@?"
+                nbOnChange: "&?"
             template: '''
-<div class="bn-ui-search">
+<div>
     <i class="glyphicon glyphicon-search fa fa-search"></i>
-    <input type="text" ng-model="model" class="form-control" placeholder="{{placeholder}}" />
-    <span class="ng-cloak" role="button" ng-show="model" ng-click="model=null">&times;</span>
+    <input type="text" ng-model="nbModel" class="form-control" placeholder="{{nbPlaceholder}}" ng-change="nbOnChange({data: nbModel})" />
+    <span class="ng-cloak" role="button" ng-show="nbModel" ng-click="nbModel=null;nbOnChange({data: nbModel})">&times;</span>
 </div>
 '''
 ]

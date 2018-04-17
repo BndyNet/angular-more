@@ -1,34 +1,35 @@
-.bn-ui-search {
-    position: relative;
+bn-ui-search {
+    div {
+        position: relative;
+        & > i.glyphicon {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+        }
 
-    & > i {
-        position: absolute;
-        top: 10px;
-        left: 15px;
-    }
+        & > .form-control {
+            padding-left: 35px;
+            padding-right: 30px;
+            border-radius: 2em;
+        }
 
-    & > input {
-        padding-left: 35px;
-        padding-right: 30px;
-        border-radius: 2em;
-    }
+        & > span {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            display: block;
+            width: 1em;
+            height: 1em;
+            line-height: .9em;
+            text-align: center;
+            border-radius: .5em;
+            background-color: #ddd;
+            color: #333;
 
-    & > span {
-        position: absolute;
-        right: 15px;
-        top: 10px;
-        display: block;
-        width: 1em;
-        height: 1em;
-        line-height: .9em;
-        text-align: center;
-        border-radius: .5em;
-        background-color: #ddd;
-        color: #333;
-
-        &:hover {
-            background-color: #666;
-            color: white;
+            &:hover {
+                background-color: #666;
+                color: white;
+            }
         }
     }
 }

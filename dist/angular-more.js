@@ -48,63 +48,119 @@ angular.module("bn.ui").filter("appDate", function() {
 /*!
  * Radio or Check Buttons
  *
- * @param {object} ng-model
- * @param {string} label - The label
- * @param {object} source - {"text1": "value", "text2": "value", ...}
- * @param {boolean} multiple - Optional, default false
- * @param {boolean} withIcon - Optional, default false
- * @param {boolean} showButton - Optional, default false
+ * @param {object} nb-model
+ * @param {string} nb-label - The label
+ * @param {object} nb-source - [{"labelField": "value", "valueField": "value"}, ...]
+ * @param {boolean} nb-multiple - Optional, default false
+ * @param {boolean} nb-with-icon - Optional, default false
+ * @param {boolean} nb-show-button - Optional, default false
+ * @param {function} nb-on-change- Optional, fn(data)
  *
  */
 angular.module("bn.ui").directive("bnUiChecks", function() {
   return {
     restrict: "E",
-    replace: true,
     scope: {
-      model: "=ngModel",
-      label: "@",
-      source: "=",
-      multiple: "=?",
-      withIcon: "=?",
-      showButton: "=?"
+      nbModel: "=?",
+      nbLabel: "@",
+      nbSource: "=",
+      nbTextField: "@",
+      nbValueField: "@",
+      nbMultiple: "=?",
+      nbWithIcon: "=?",
+      nbShowButton: "=?",
+      nbOnChange: "&?"
     },
-    template: '<div class="bn-ui-checks form-group">\n    <label ng-bind-html="label" ng-if="label"></label>\n    <div>\n        <div class="{{showButton ? \'btn-group\' : \'form-control-static\'}}">\n            <label ng-class="{\'btn btn-default\': showButton, \'active\': showButton && isExisted(value)}" ng-repeat="(key, value) in source"\n                ng-class="{active: isExisted(value)}" ng-click="select(value)">\n\n                <i class="glyphicon fa fa-fw {{multiple?\'glyphicon-check fa-check-square-o\':\'glyphicon-check fa-dot-circle-o\'}}" ng-show="isExisted(value) && showIcon()"></i>\n                <i class="glyphicon fa fa-fw {{multiple?\'glyphicon-unchecked fa-square-o\':\'glyphicon-unchecked fa-circle-o\'}}" ng-show="!isExisted(value) && showIcon()"></i>\n                <span ng-bind="key"></span>\n            </label>\n        </div>\n    </div>\n</div>',
+    template: '<div class="form-group">\n    <label ng-bind-html="nbLabel" ng-if="nbLabel"></label>\n    <div>\n        <div class="{{nbShowButton ? \'btn-group\' : \'form-control-static\'}}">\n            <label ng-class="{\'btn btn-default\': nbShowButton, \'active\': nbShowButton && isExisted(item)}" ng-repeat="item in nbSource"\n                ng-class="{active: isExisted(item)}" ng-click="itemClick(item)">\n                <i class="glyphicon fa fa-fw {{nbMultiple?\'glyphicon-check fa-check-square-o\':\'glyphicon-check fa-dot-circle-o\'}}" ng-show="isExisted(item) && showIcon()"></i>\n                <i class="glyphicon fa fa-fw {{nbMultiple?\'glyphicon-unchecked fa-square-o\':\'glyphicon-unchecked fa-circle-o\'}}" ng-show="!isExisted(item) && showIcon()"></i>\n                <span>{{getItemText(item)}}</span>\n            </label>\n        </div>\n    </div>\n</div>',
     link: function(scope, ele, attrs) {
-      if (!scope.model && scope.multiple) {
-        scope.model = [];
+      var checkedItems, syncModel;
+      checkedItems = [];
+      if (typeof scope.nbModel === 'undefined') {
+        scope.nbModel = scope.nbMultiple ? [] : null;
       }
-      if (typeof scope.multiple === "undefined") {
-        scope.multiple = false;
+      syncModel = function() {
+        if (scope.nbMultiple) {
+          scope.nbModel.length = 0;
+          return angular.forEach(checkedItems, function(checkedItem) {
+            return scope.nbModel.push(checkedItem[scope.nbValueField]);
+          });
+        } else {
+          return scope.nbModel = checkedItems.length > 0 ? checkedItems[0][scope.nbValueField] : null;
+        }
+      };
+      if (scope.nbModel) {
+        if (angular.isArray(scope.nbModel)) {
+          angular.forEach(scope.nbModel, function(item) {
+            return angular.forEach(scope.nbSource, function(sourceItem) {
+              if (sourceItem[scope.nbValueField] === item) {
+                return checkedItems.push(sourceItem);
+              }
+            });
+          });
+        } else {
+          angular.forEach(scope.nbSource, function(sourceItem) {
+            if (sourceItem[scope.nbValueField] === scope.nbModel) {
+              return checkedItems.push(sourceItem);
+            }
+          });
+        }
       }
-      if (typeof scope.withIcon === "undefined") {
-        scope.withIcon = false;
+      if (typeof scope.nbMultiple === "undefined") {
+        scope.nbMultiple = false;
       }
+      if (typeof scope.nbWithIcon === "undefined") {
+        scope.nbWithIcon = false;
+      }
+      if (!scope.nbWithIcon) {
+        scope.nbShowButton = true;
+      }
+      scope.$watch("nbWithIcon", function(value) {
+        if (!value) {
+          return scope.nbShowButton = true;
+        }
+      });
+      scope.$watch("nbShowButton", function(value) {
+        if (!value) {
+          return scope.nbWithIcon = true;
+        }
+      });
       scope.showIcon = function() {
-        if (typeof scope.withIcon === "undefined") {
+        if (typeof scope.nbWithIcon === "undefined") {
           return false;
         } else {
-          return scope.withIcon;
+          return scope.nbWithIcon;
         }
       };
-      scope.isExisted = function(value) {
-        if (typeof scope.model === "undefined") {
+      scope.isExisted = function(item) {
+        if (checkedItems.length === 0) {
           return false;
         }
-        if (scope.multiple) {
-          return scope.model.indexOf(value) >= 0;
-        } else {
-          return value.toString() === scope.model.toString();
+        if (scope.nbMultiple) {
+          return checkedItems.indexOf(item) >= 0;
+        } else if (checkedItems.length > 0) {
+          return checkedItems[0] === item;
         }
+        return false;
       };
-      return scope.select = function(value) {
-        if (scope.multiple) {
-          if (scope.model.indexOf(value) < 0) {
-            return scope.model.push(value);
+      scope.getItemText = function(item) {
+        return item[scope.nbTextField];
+      };
+      scope.itemClick = function(item) {
+        if (scope.nbMultiple) {
+          if (checkedItems.indexOf(item) < 0) {
+            checkedItems.push(item);
           } else {
-            return scope.model.splice(scope.model.indexOf(value), 1);
+            checkedItems.splice(checkedItems.indexOf(item), 1);
           }
         } else {
-          return scope.model = value;
+          checkedItems.length = 0;
+          checkedItems.push(item);
+        }
+        syncModel();
+        if (scope.nbOnChange) {
+          return scope.nbOnChange({
+            data: scope.nbModel
+          });
         }
       };
     }
@@ -115,27 +171,26 @@ angular.module("bn.ui").directive("bnUiChecks", function() {
 /*!
  * Renders a color-picker control
  *
- * @param {object} ng-colors - e.x. [{key: 1, value: "#ff0000", description: "", css: "flag"}, ...]
- * @param {object} ng-model - type of key
- * @param {function} ng-change - fn(color)
+ * @param {object} nb-colors - e.x. [{key: 1, value: "#ff0000", description: "", css: "flag"}, ...]
+ * @param {object} nb-model - type of key
+ * @param {function} nb-on-change - fn(data)
  *
  * @example
- *   <bn-ui-colorpicker ng-colors="[{}, {}, ...]" ng-model="model" ng-change="changeColor(color)"></bn-ui-colorpicker>
+ *   <bn-ui-colorpicker nb-colors="[{}, {}, ...]" nb-model="model" nb-on-change="changeColor(color)"></bn-ui-colorpicker>
  */
 angular.module("bn.ui").directive("bnUiColorpicker", function() {
   return {
     restrict: "E",
-    replace: true,
     scope: {
-      ngColors: "=ngColors",
-      ngModel: "=ngModel",
-      onChange: "&onChange"
+      nbColors: "=",
+      nbModel: "=?",
+      nbOnChange: "&?"
     },
-    template: '<span class="bn-ui-colorpicker dropdown">\n  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">\n      <span class="empty" ng-show="ngModel == null || typeof(ngModel) == \'undefined\'"></span>\n      <span ng-style="{\'background-color\': color.value}" ng-class="color.css" ng-show="color.key == ngModel" ng-repeat="color in ngColors" title="{{color.description}}"></span>\n  </a>\n  <ul class="dropdown-menu" ng-class="{inline: inline}">\n      <li ng-repeat="color in ngColors">\n          <a role="button" ng-click="onChange({color: color})">\n              <span class="flag" style="" ng-class="color.css" ng-style="{\'background-color\': color.value}"></span>\n              <span ng-bind="color.description"></span>\n          </a>\n      </li>\n  </ul>\n</span>',
+    template: '<span class="dropdown">\n  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">\n      <span class="empty" ng-show="nbModel == null || typeof(nbModel) == \'undefined\'"></span>\n      <span ng-style="{\'background-color\': color.value}" ng-class="color.css" ng-show="color.key == nbModel" ng-repeat="color in nbColors" title="{{color.description}}"></span>\n  </a>\n  <ul class="dropdown-menu" ng-class="{inline: inline}">\n      <li ng-repeat="color in nbColors">\n          <a role="button" ng-click="nbOnChange({data: color})">\n              <span class="flag" style="" ng-class="color.css" ng-style="{\'background-color\': color.value}"></span>\n              <span ng-bind="color.description"></span>\n          </a>\n      </li>\n  </ul>\n</span>',
     link: function(scope, ele, attrs) {
       var c, i, inline, len, ref;
       inline = true;
-      ref = scope.ngColors;
+      ref = scope.nbColors;
       for (i = 0, len = ref.length; i < len; i++) {
         c = ref[i];
         if (c.description) {
@@ -258,14 +313,22 @@ angular.module("bn.ui").directive("bnUiLoading", [
     return {
       restrict: "A",
       link: function(scope, elem, attrs) {
-        var children;
-        elem.css('width', elem.outerWidth());
-        elem.css('height', elem.outerHeight());
+        var children, contentStyle, isContentElem;
+        elem.css("width", elem.outerWidth());
+        elem.css("height", elem.outerHeight());
+        isContentElem = true;
+        if (elem[0].tagName.toLocaleUpperCase() === "BUTTON" || elem[0].tagName.toLocaleUpperCase() === "A" || elem.attr("ng-click")) {
+          isContentElem = false;
+        }
+        contentStyle = isContentElem ? "opacity-lg" : "";
         children = $compile(elem.contents())(scope);
         scope.$watch(attrs.bnUiLoading, function(value) {
           elem.attr("disabled", value);
           if (value) {
-            elem.prepend('<div class="in-process"><div><i class="bounce1"></i><i class="bounce2"></i><i class="bounce3"></i></div></div>');
+            elem.prepend("<div class='in-process " + contentStyle + "'><div><i class='bounce1'></i><i class='bounce2'></i><i class='bounce3'></i></div></div>");
+            if (isContentElem) {
+              return;
+            }
             return angular.forEach(children, function(child) {
               if (angular.element(child)[0].nodeName === '#text') {
                 return angular.element(child).remove();
@@ -275,6 +338,9 @@ angular.module("bn.ui").directive("bnUiLoading", [
             });
           } else {
             angular.element(document.querySelector(".in-process")).remove();
+            if (isContentElem) {
+              return;
+            }
             return angular.forEach(children, function(child) {
               if (angular.element(child)[0].nodeName === '#text') {
                 return elem.append(child);
@@ -386,12 +452,12 @@ angular.module("bn.ui").directive("bnUiSearch", [
   function() {
     return {
       restrict: "E",
-      replace: true,
       scope: {
-        model: "=ngModel",
-        placeholder: "@"
+        nbModel: "=",
+        nbPlaceholder: "@?",
+        nbOnChange: "&?"
       },
-      template: '<div class="bn-ui-search">\n    <i class="glyphicon glyphicon-search fa fa-search"></i>\n    <input type="text" ng-model="model" class="form-control" placeholder="{{placeholder}}" />\n    <span class="ng-cloak" role="button" ng-show="model" ng-click="model=null">&times;</span>\n</div>'
+      template: '<div>\n    <i class="glyphicon glyphicon-search fa fa-search"></i>\n    <input type="text" ng-model="nbModel" class="form-control" placeholder="{{nbPlaceholder}}" ng-change="nbOnChange({data: nbModel})" />\n    <span class="ng-cloak" role="button" ng-show="nbModel" ng-click="nbModel=null;nbOnChange({data: nbModel})">&times;</span>\n</div>'
     };
   }
 ]);
@@ -400,21 +466,104 @@ angular.module("bn.ui").directive("bnUiSearch", [
 /*!
  * Renders a dropdown list
  *
- * @param {string} label
- * @param {object} ng-model
- * @param {object} source - {"Option": "value", ""}
+ * @param {string} nb-label
+ * @param {object} nb-model
+ * @param {array} nb-source - [{label: '', value: ''}]
+ * @param {function} nb-on-change - fn(data)
  */
 angular.module("bn.ui").directive("bnUiSelect", [
   function() {
     return {
       restrict: "E",
-      replace: true,
       scope: {
-        model: "=ngModel",
-        source: "=",
-        label: "@"
+        nbModel: "=",
+        nbSource: "=",
+        nbTextField: "@",
+        nbValueField: "@",
+        nbLabel: "@?",
+        nbMultiple: "=?",
+        nbPlaceholder: "@?",
+        nbOnChange: "&?"
       },
-      template: '<div class="bn-ui-select form-group">\n    <label ng-bind-html="label" ng-if="label"></label>\n    <select ng-model="model" class="form-control">\n        <option value="{{value}}" ng-bind="key" ng-repeat="(key, value) in source"></option>\n    </select>\n</div>'
+      template: '<div class="form-group">\n    <label ng-bind-html="nbLabel" ng-if="nbLabel"></label>\n    <a class="form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\n        <span class="placeholder" ng-if="selectedItems.length === 0">{{nbPlaceholder}}</span>\n        <span class="label label-primary" ng-repeat="item in selectedItems track by $index">\n            <span>{{item[nbTextField]}}</span>\n        </span>\n        <span class="caret"></span>\n    </a>\n    <ul class="dropdown-menu" aria-labelledby="dLabel">\n        <li class="placeholder" ng-if="nbPlaceholder && !nbMultiple">\n            <a ng-click="onchange(null)">{{nbPlaceholder}}</a>\n        </li>\n        <li ng-repeat="item in nbSource track by $index">\n            <a ng-click="onchange(item)">\n                <i class="glyphicon glyphicon-ok" aria-hidden="true" ng-show="item.__selected"></i>\n                <span>{{item[nbTextField]}}</span>\n            </a>\n        </li>\n    </ul>\n</div>',
+      link: function(scope, elem, attrs) {
+        scope.selectedItems = [];
+        if (scope.nbModel) {
+          angular.forEach(scope.nbSource, function(itemSource) {
+            if (angular.isArray(scope.nbModel)) {
+              angular.forEach(scope.nbModel, function(item) {
+                if (item === itemSource[scope.nbValueField]) {
+                  itemSource.__selected = true;
+                  return scope.selectedItems.push(itemSource);
+                }
+              });
+            } else {
+              if (itemSource[scope.nbValueField] === scope.nbModel) {
+                itemSource.__selected = true;
+                scope.selectedItems.push(itemSource);
+              }
+            }
+          });
+        }
+        scope.onchange = function(item) {
+          var i, itemSource, j, k, len, len1, len2, ref, ref1, ref2, selectedItem, selectedValues;
+          if (!item && !scope.nbMultiple) {
+            ref = scope.nbSource;
+            for (i = 0, len = ref.length; i < len; i++) {
+              itemSource = ref[i];
+              itemSource.__selected = false;
+            }
+            scope.selectedItems.length = 0;
+            scope.nbModel = null;
+            return;
+          }
+          if (item.__selected && !scope.nbMultiple) {
+            return;
+          }
+          if (!scope.nbMultiple) {
+            ref1 = scope.nbSource;
+            for (j = 0, len1 = ref1.length; j < len1; j++) {
+              itemSource = ref1[j];
+              itemSource.__selected = false;
+            }
+          }
+          item.__selected = !item.__selected;
+          if (item.__selected) {
+            if (scope.nbMultiple) {
+              if (scope.selectedItems.indexOf(item) < 0) {
+                scope.selectedItems.push(item);
+              }
+            } else {
+              scope.selectedItems.length = 0;
+              scope.selectedItems.push(item);
+            }
+          } else {
+            if (scope.selectedItems.indexOf(item) >= 0) {
+              scope.selectedItems.splice(scope.selectedItems.indexOf(item), 1 && !item.__selected);
+            }
+          }
+          selectedValues = [];
+          ref2 = scope.selectedItems;
+          for (k = 0, len2 = ref2.length; k < len2; k++) {
+            selectedItem = ref2[k];
+            selectedValues.push(selectedItem[scope.nbValueField]);
+          }
+          if (selectedValues.length > 0) {
+            scope.nbModel = scope.nbMultiple ? angular.copy(selectedValues) : selectedValues[0];
+          } else {
+            if (scope.nbMultiple) {
+              scope.nbModel = angular.copy([]);
+            } else {
+              scope.nbModel = null;
+            }
+          }
+          if (scope.nbOnChange) {
+            scope.nbOnChange({
+              data: scope.nbModel
+            });
+          }
+        };
+      }
     };
   }
 ]);
@@ -423,28 +572,27 @@ angular.module("bn.ui").directive("bnUiSelect", [
 /*!
  * Renders a switch
  *
- * @param {object} ng-model - {recordCount, pageSize, currentPage}
- * @param {function} on-change - function(value) { // here to get data; }
+ * @param {object} nb-model - {recordCount, pageSize, currentPage}
+ * @param {function} nb-on-change - function(data) { // here to get data; }
  *
  * @example
- *   <bn-ui-switch ng-model="model" on-change="change(value)"></bn-ui-switch>
+ *   <bn-ui-switch nb-model="model" nb-on-change="change(value)"></bn-ui-switch>
  */
 angular.module("bn.ui").directive("bnUiSwitch", [
   function() {
     return {
       restrict: "E",
-      replace: true,
       scope: {
-        model: "=ngModel",
-        onChange: "&onChange"
+        nbModel: "=",
+        nbOnChange: "&?"
       },
-      template: '<span class="bn-ui-switch" ng-class="{on: model}" ng-click="change();">\n    <span class="indicator"></span>\n</span>',
+      template: '<span ng-class="{on: nbModel}" ng-click="change();">\n    <span class="indicator"></span>\n</span>',
       link: function(scope, ele, attrs) {
         return scope.change = function() {
-          scope.model = !scope.model;
-          if (angular.isFunction(scope.onChange)) {
-            return scope.onChange({
-              value: scope.model
+          scope.nbModel = !scope.nbModel;
+          if (angular.isFunction(scope.nbOnChange)) {
+            return scope.nbOnChange({
+              data: scope.nbModel
             });
           }
         };
