@@ -3,40 +3,40 @@
  * (c) 2014-2018 Bndy.Net (http://bndy.net)
  */
 
-bn-ui-checks .form-control-static label {
+nb-ui-checks .form-control-static label {
   cursor: pointer;
   font-weight: normal;
   display: inline-block;
   margin-right: 15px; }
-  bn-ui-checks .form-control-static label:last-child {
+  nb-ui-checks .form-control-static label:last-child {
     margin-right: 0; }
 
-bn-ui-colorpicker .dropdown-toggle {
+nb-ui-colorpicker .dropdown-toggle {
   display: inline-block; }
-  bn-ui-colorpicker .dropdown-toggle > span {
+  nb-ui-colorpicker .dropdown-toggle > span {
     width: 1em;
     height: 1em;
     display: inline-block;
     vertical-align: text-top;
     border-radius: 2px; }
-    bn-ui-colorpicker .dropdown-toggle > span.empty {
+    nb-ui-colorpicker .dropdown-toggle > span.empty {
       border: solid 1px #dedede; }
 
-bn-ui-colorpicker ul.dropdown-menu > li > a > .flag {
+nb-ui-colorpicker ul.dropdown-menu > li > a > .flag {
   width: 1em;
   height: 1em;
   display: inline-block;
   vertical-align: text-top;
   border-radius: 2px; }
 
-bn-ui-colorpicker ul.dropdown-menu.inline {
+nb-ui-colorpicker ul.dropdown-menu.inline {
   min-width: 9.8em;
   padding: .25em; }
-  bn-ui-colorpicker ul.dropdown-menu.inline > li {
+  nb-ui-colorpicker ul.dropdown-menu.inline > li {
     float: left; }
-    bn-ui-colorpicker ul.dropdown-menu.inline > li > a {
+    nb-ui-colorpicker ul.dropdown-menu.inline > li > a {
       padding: .25em; }
-      bn-ui-colorpicker ul.dropdown-menu.inline > li > a:focus {
+      nb-ui-colorpicker ul.dropdown-menu.inline > li > a:focus {
         border-radius: 2px; }
 
 @-webkit-keyframes ui-loading-bouncedelay {
@@ -57,10 +57,10 @@ bn-ui-colorpicker ul.dropdown-menu.inline {
     -webkit-transform: scale(1);
     transform: scale(1); } }
 
-[bn-ui-loading] {
+[nb-ui-loading] {
   position: relative;
   min-width: 50px; }
-  [bn-ui-loading] .in-process {
+  [nb-ui-loading] .in-process {
     display: table;
     position: absolute;
     background-color: rgba(255, 255, 255, 0.1);
@@ -68,13 +68,13 @@ bn-ui-colorpicker ul.dropdown-menu.inline {
     height: 100%;
     top: 0;
     left: 0; }
-    [bn-ui-loading] .in-process.opacity-lg {
+    [nb-ui-loading] .in-process.opacity-lg {
       background-color: rgba(255, 255, 255, 0.5); }
-    [bn-ui-loading] .in-process > div {
+    [nb-ui-loading] .in-process > div {
       display: table-cell;
       vertical-align: middle;
       text-align: center; }
-      [bn-ui-loading] .in-process > div i {
+      [nb-ui-loading] .in-process > div i {
         width: 1rem;
         height: 1rem;
         background-color: #ffffff;
@@ -83,46 +83,46 @@ bn-ui-colorpicker ul.dropdown-menu.inline {
         display: inline-block;
         -webkit-animation: ui-loading-bouncedelay 1.4s infinite ease-in-out both;
         animation: ui-loading-bouncedelay 1.4s infinite ease-in-out both; }
-      [bn-ui-loading] .in-process > div .bounce1 {
+      [nb-ui-loading] .in-process > div .bounce1 {
         -webkit-animation-delay: -0.32s;
         animation-delay: -0.32s; }
-      [bn-ui-loading] .in-process > div .bounce2 {
+      [nb-ui-loading] .in-process > div .bounce2 {
         -webkit-animation-delay: -0.16s;
         animation-delay: -0.16s; }
 
-.bn-ui-pager {
+nb-ui-pager div {
   margin: 10px 0; }
-  .bn-ui-pager:after {
+  nb-ui-pager div:after {
     content: "";
     display: block;
     clear: both; }
-  .bn-ui-pager .summary {
+  nb-ui-pager div .summary {
     float: left;
     margin: 7px 0; }
-  .bn-ui-pager nav {
+  nb-ui-pager div nav {
     float: right; }
-    .bn-ui-pager nav .pagination {
+    nb-ui-pager div nav .pagination {
       margin: 0; }
   @media (max-width: 768px) {
-    .bn-ui-pager .summary {
+    nb-ui-pager div .summary {
       float: none;
       text-align: center;
       margin-bottom: 10px; }
-    .bn-ui-pager nav {
+    nb-ui-pager div nav {
       float: none;
       text-align: center; } }
 
-bn-ui-search div {
+nb-ui-search div {
   position: relative; }
-  bn-ui-search div > i.glyphicon {
+  nb-ui-search div > i.glyphicon {
     position: absolute;
     top: 10px;
     left: 15px; }
-  bn-ui-search div > .form-control {
+  nb-ui-search div > .form-control {
     padding-left: 35px;
     padding-right: 30px;
     border-radius: 2em; }
-  bn-ui-search div > span {
+  nb-ui-search div > span {
     position: absolute;
     right: 15px;
     top: 10px;
@@ -134,36 +134,36 @@ bn-ui-search div {
     border-radius: .5em;
     background-color: #ddd;
     color: #333; }
-    bn-ui-search div > span:hover {
+    nb-ui-search div > span:hover {
       background-color: #666;
       color: white; }
 
-bn-ui-select a:hover,
-bn-ui-select a:focus {
+nb-ui-select a:hover,
+nb-ui-select a:focus {
   text-decoration: none; }
 
-bn-ui-select .form-control {
+nb-ui-select .form-control {
   padding-top: 5px; }
-  bn-ui-select .form-control .label {
+  nb-ui-select .form-control .label {
     margin-right: .5rem; }
-  bn-ui-select .form-control .caret {
+  nb-ui-select .form-control .caret {
     float: right;
     margin-top: 9px; }
 
-bn-ui-select .dropdown-menu {
+nb-ui-select .dropdown-menu {
   top: 0;
   left: 14px;
   width: calc(100% - 28px); }
-  bn-ui-select .dropdown-menu li > a {
+  nb-ui-select .dropdown-menu li > a {
     position: relative; }
-    bn-ui-select .dropdown-menu li > a i {
+    nb-ui-select .dropdown-menu li > a i {
       position: absolute;
       top: 6px; }
-    bn-ui-select .dropdown-menu li > a span {
+    nb-ui-select .dropdown-menu li > a span {
       display: inline-block;
       margin-left: 24px; }
 
-bn-ui-switch span {
+nb-ui-switch span {
   cursor: pointer;
   display: inline-block;
   position: relative;
@@ -173,7 +173,7 @@ bn-ui-switch span {
   background-color: #dddddd;
   border-radius: 3px;
   transition: .3s ease-in-out; }
-  bn-ui-switch span > .indicator {
+  nb-ui-switch span > .indicator {
     display: block;
     position: absolute;
     left: .1em;
@@ -183,18 +183,18 @@ bn-ui-switch span {
     border-radius: 3px;
     transition: .3s ease-in-out;
     background-color: #fff; }
-  bn-ui-switch span.on {
+  nb-ui-switch span.on {
     background-color: #AEDCAE; }
-  bn-ui-switch span.on > .indicator {
+  nb-ui-switch span.on > .indicator {
     background-color: #5cb85c;
     transform: translateX(1.5em); }
-  bn-ui-switch span.circle {
+  nb-ui-switch span.circle {
     vertical-align: text-top;
     width: 2.5em;
     height: 1em;
     border-radius: .5em;
     box-shadow: 1px 1px 3px #aaa; }
-    bn-ui-switch span.circle > .indicator {
+    nb-ui-switch span.circle > .indicator {
       left: 0;
       top: 0;
       border-radius: .5em;

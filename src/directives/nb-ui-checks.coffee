@@ -10,8 +10,8 @@
 # @param {function} nb-on-change- Optional, fn(data)
 #
 ###
-angular.module "bn.ui"
-    .directive "bnUiChecks", 
+angular.module "nb.ui"
+    .directive "nbUiChecks", 
     ->
         restrict: "E"
         scope:

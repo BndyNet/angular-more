@@ -24,7 +24,7 @@
 
     <script src="../dist/angular-more.min.js"></script>
     <script>
-        var app = angular.module("app", ["bn.ui"]);
+        var app = angular.module("app", ["nb.ui"]);
     </script>
     <style>
         .result {
@@ -43,28 +43,28 @@
 
 <div class="col-md-8 sections">
     <code>
-        angular.module("app", ["bn.ui"])
+        angular.module("app", ["nb.ui"])
     </code>
 
     <section>
         <h3>Directives</h3>
 
-        <section ng-controller="BnUiLoading">
+        <section ng-controller="NbUiLoading">
             <h4>
-                @bn-ui-loading
+                @nb-ui-loading
             </h4>
             <div class="panel panel-default panel-example">
                 <div class="panel-body">
                    <button class="btn btn-primary" 
                         ng-click="submit()"
-                        bn-ui-loading="loading" style="border: 2px #00ff00 solid; padding: 20px; margin: 20px; height: 100px; width: 200px;">
+                        nb-ui-loading="loading" style="border: 2px #00ff00 solid; padding: 20px; margin: 20px; height: 100px; width: 200px;">
                        <i class="fa fa-save fa-fw"></i>
                         Submit
                     </button>
-                   <button class="btn btn-danger" bn-ui-loading="loading" ng-click="submit()">S</button>
-                   <a class="btn btn-danger" bn-ui-loading="loading" ng-click="submit()">Submit</a>
+                   <button class="btn btn-danger" nb-ui-loading="loading" ng-click="submit()">S</button>
+                   <a class="btn btn-danger" nb-ui-loading="loading" ng-click="submit()">Submit</a>
 
-                   <div bn-ui-loading="loading" class="bg-success" style="padding: 30px;">
+                   <div nb-ui-loading="loading" class="bg-success" style="padding: 30px;">
                        <br>
                        <br>
                       <p>Placeholder for data</p>
@@ -76,7 +76,7 @@
             </div>
         </section>
         <script>
-            app.controller("BnUiLoading", ["$scope", "$timeout", function ($scope, $timeout) {
+            app.controller("NbUiLoading", ["$scope", "$timeout", function ($scope, $timeout) {
                 $scope.loading = false;
                 $scope.submit = function() {
                     $scope.loading = true;
@@ -86,7 +86,7 @@
 
         <section>
             <h4>
-                @bn-fill-height
+                @nb-fill-height
             </h4>
             <div class="panel panel-default panel-example">
                 <div class="panel-body">
@@ -104,20 +104,20 @@
             </div>
         </section>
 
-        <section ng-controller="BnUiSwitch">
-            <h4>&lt;bn-ui-switch /&gt;</h4>
+        <section ng-controller="NbUiSwitch">
+            <h4>&lt;nb-ui-switch /&gt;</h4>
 
             <div class="panel panel-default panel-example">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        bn-ui-switch @nb-model, @nb-on-change=fn(data)
+                        nb-ui-switch @nb-model, @nb-on-change=fn(data)
                     </div>
                 </div>
                 <div class="panel-body">
                     Default Theme:
-                    <bn-ui-switch nb-model="val" nb-on-change="onchange(data)"></bn-ui-switch>
+                    <nb-ui-switch nb-model="val" nb-on-change="onchange(data)"></nb-ui-switch>
                     Circle Theme:
-                    <bn-ui-switch class="circle" nb-model="val" nb-on-change="onchange(data)"></bn-ui-switch>
+                    <nb-ui-switch class="circle" nb-model="val" nb-on-change="onchange(data)"></nb-ui-switch>
                     <div class="result">
                         <i class="glyphicon glyphicon-hand-right"></i>
                         <span ng-bind="val"></span>
@@ -126,7 +126,7 @@
             </div>
         </section>
         <script>
-            app.controller("BnUiSwitch", function($scope) {
+            app.controller("NbUiSwitch", function($scope) {
                 $scope.val = true;
                 $scope.onchange = function (value) {
                     console.debug(arguments);
@@ -134,22 +134,22 @@
             });
         </script>
 
-        <section ng-controller="BnUiSearch">
+        <section ng-controller="NbUiSearch">
             <h4>
-                &lt;bn-ui-search /&gt;
+                &lt;nb-ui-search /&gt;
             </h4>
             <div class="panel panel-default panel-example">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        bn-ui-search @nb-model, @nb-placeholder, @nb-on-change=fn(data)
+                        nb-ui-search @nb-model, @nb-placeholder, @nb-on-change=fn(data)
                     </div>
                 </div>
                 <div class="panel-body">
-                    <bn-ui-search nb-model="keywords" nb-placeholder="Search..." nb-on-change="searchChange(data)"></bn-ui-search>
+                    <nb-ui-search nb-model="keywords" nb-placeholder="Search..." nb-on-change="searchChange(data)"></nb-ui-search>
                 </div>
             </div>
             <script>
-                app.controller("BnUiSearch", ["$scope", function ($scope) {
+                app.controller("NbUiSearch", ["$scope", function ($scope) {
                     $scope.searchChange = function(k) {
                         console.debug(k);
                     };
@@ -158,21 +158,21 @@
         </section>
 
         <section>
-            <h4>&lt;bn-ui-colorpicker /&gt;</h4>
-            <div class="panel panel-default panel-example" ng-controller="BnUiColorpicker">
+            <h4>&lt;nb-ui-colorpicker /&gt;</h4>
+            <div class="panel panel-default panel-example" ng-controller="NbUiColorpicker">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        bn-ui-colorpicker @nb-colors=[{key, value, css, description},...]  @nb-model  @nb-on-change=fn(data)
+                        nb-ui-colorpicker @nb-colors=[{key, value, css, description},...]  @nb-model  @nb-on-change=fn(data)
                     </div>
                 </div>
                 <div class="panel-body">
-                    <bn-ui-colorpicker nb-colors="colors" nb-model="model1" nb-on-change="changeColor1(data)"></bn-ui-colorpicker>
+                    <nb-ui-colorpicker nb-colors="colors" nb-model="model1" nb-on-change="changeColor1(data)"></nb-ui-colorpicker>
                     <div class="result">
                         <i class="glyphicon glyphicon-hand-right"></i>
                         <span ng-bind="selectedColor1"></span>
                     </div>
                     <hr />
-                    <bn-ui-colorpicker  nb-colors="colorsWithoutDescription" nb-model="model2" nb-on-change="changeColor2(data)"></bn-ui-colorpicker>
+                    <nb-ui-colorpicker  nb-colors="colorsWithoutDescription" nb-model="model2" nb-on-change="changeColor2(data)"></nb-ui-colorpicker>
                     <div class="result">
                         <i class="glyphicon glyphicon-hand-right"></i>
                         <span ng-bind="selectedColor2"></span>
@@ -180,7 +180,7 @@
                 </div>
             </div>
             <script>
-                app.controller("BnUiColorpicker", ["$scope", function ($scope) {
+                app.controller("NbUiColorpicker", ["$scope", function ($scope) {
                     $scope.colors = [
                         {
                             key: 0,
@@ -227,8 +227,8 @@
         </section>
 
         <section>
-            <h4>&lt;bn-ui-input /&gt;</h4>
-            <div class="panel panel-default panel-example" ng-controller="BnUiInputCtrl">
+            <h4>&lt;nb-ui-input /&gt;</h4>
+            <div class="panel panel-default panel-example" ng-controller="NbUiInputCtrl">
                 <div class="panel-heading">
                     <div class="panel-title">
                         @type=[date, datetime, text, url, email, number]
@@ -237,25 +237,25 @@
                 <div class="panel-body">
                     <form>
                         <div class="row">
-                            <bn-ui-input label="Date" class="col-xs-4" ng-model="model.dt" type="date"
-                                         format="MM/DD/YYYY"></bn-ui-input>
-                            <bn-ui-input label="Date Time" class="col-xs-4" ng-model="model.dt" type="datetime"
-                                         format="YYYY-MM-DD h:mm a"></bn-ui-input>
-                            <bn-ui-input label="Text" class="col-xs-4" ng-model="model.dt" type="text"></bn-ui-input>
+                            <nb-ui-input nb-label="Date" class="col-xs-4" nb-model="model.dt" nb-type="date"
+                                         nb-format="MM/DD/YYYY"></nb-ui-input>
+                            <nb-ui-input nb-label="Date Time" class="col-xs-4" nb-model="model.dt" nb-type="datetime"
+                            nb-format="YYYY-MM-DD h:mm a"></nb-ui-input>
+                            <nb-ui-input nb-label="Text" class="col-xs-4" nb-model="model.dt" nb-type="text"></nb-ui-input>
                         </div>
                         <div class="row">
-                            <bn-ui-input label="Url" class="col-xs-4" ng-model="model.url" type="url"></bn-ui-input>
-                            <bn-ui-input label="Email" class="col-xs-4" ng-model="model.email"
-                                         type="email"></bn-ui-input>
-                            <bn-ui-input label="Number" class="col-xs-4" ng-model="model.number"
-                                         type="number"></bn-ui-input>
+                            <nb-ui-input nb-label="Url" class="col-xs-4" nb-model="model.url" nb-type="url"></nb-ui-input>
+                            <nb-ui-input nb-label="Email" class="col-xs-4" nb-model="model.email"
+                            nb-type="email"></nb-ui-input>
+                            <nb-ui-input nb-label="Number" class="col-xs-4" nb-model="model.number"
+                            nb-type="number"></nb-ui-input>
                         </div>
                     </form>
 
                 </div>
             </div>
             <script type="text/javascript">
-                app.controller("BnUiInputCtrl", ["$scope", function ($scope) {
+                app.controller("NbUiInputCtrl", ["$scope", function ($scope) {
                     $scope.model = {};
                 }]);
             </script>
@@ -263,9 +263,9 @@
 
         <section>
             <h4>
-                &lt;bn-ui-select /&gt;
+                &lt;nb-ui-select /&gt;
             </h4>
-            <div class="panel panel-default panel-example" ng-controller="BnUiSelectCtrl">
+            <div class="panel panel-default panel-example" ng-controller="NbUiSelectCtrl">
                 <div class="panel-heading">
                     <div class="panel-title">
                         @nb-source=[], @nb-label, @nb-model
@@ -273,26 +273,26 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <bn-ui-select class="col-xs-3" nb-label="Multiple Selection" nb-model="mModel"
+                        <nb-ui-select class="col-xs-3" nb-label="Multiple Selection" nb-model="mModel"
                                       nb-placeholder="----- Please select -----"
                                       nb-text-field="label"
                                       nb-value-field="value"
                                       nb-multiple="true"
                                       nb-on-change="change(data)"
-                                      nb-source="dataSource"></bn-ui-select>
+                                      nb-source="dataSource"></nb-ui-select>
                     </div>
                     <div class="result">
                         <i class="glyphicon glyphicon-hand-right"></i>
                         <span ng-bind="mModel"></span>
                     </div>
                     <div class="row">
-                        <bn-ui-select class="col-xs-4" nb-label="Single Selection" nb-model="sModel"
+                        <nb-ui-select class="col-xs-4" nb-label="Single Selection" nb-model="sModel"
                                         nb-placeholder="----- Please select -----"
                                         nb-text-field="label"
                                         nb-value-field="value"
                                         nb-multiple="false"
                                         nb-on-change="change(data)"
-                                        nb-source="dataSource1"></bn-ui-select>
+                                        nb-source="dataSource1"></nb-ui-select>
                     </div>
                     <div class="result">
                         <i class="glyphicon glyphicon-hand-right"></i>
@@ -301,7 +301,7 @@
                 </div>
             </div>
             <script>
-                app.controller("BnUiSelectCtrl", ["$scope", function ($scope) {
+                app.controller("NbUiSelectCtrl", ["$scope", function ($scope) {
                     $scope.dataSource = [{
                         label: 'opt 1', value: 1
                     }, {
@@ -319,9 +319,9 @@
 
         <section>
             <h4>
-                &lt;bn-ui-checks /&gt;
+                &lt;nb-ui-checks /&gt;
             </h4>
-            <div class="panel panel-default panel-example" ng-controller="BnUiChecksCtrl">
+            <div class="panel panel-default panel-example" ng-controller="NbUiChecksCtrl">
                 <div class="panel-heading">
                     <div class="panel-title">
                         @nb-source=[], @nb-key-field="", @nb-multiple=true/false, @nb-with-icon=true/false, @nb-model=object/[], @nb-show-button=true/false, @nb-on-change=fn(data)
@@ -336,21 +336,21 @@
                             <input type="checkbox" ng-model="showIcon"> Show icon
                         </label>
                         <br /><br />
-                        <bn-ui-checks nb-label="CheckBox" nb-source="source" nb-model="mModel" nb-multiple="true"
+                        <nb-ui-checks nb-label="CheckBox" nb-source="source" nb-model="mModel" nb-multiple="true"
                                       nb-text-field="label"
                                       nb-value-field="value"
                                       nb-on-change="change(data)"
-                                      nb-with-icon="showIcon" nb-show-button="showButton"></bn-ui-checks>
+                                      nb-with-icon="showIcon" nb-show-button="showButton"></nb-ui-checks>
                         <div class="result">
                             <i class="glyphicon glyphicon-hand-right"></i>
                             <span> {{mModel}} </span>
                         </div>
 
-                        <bn-ui-checks nb-label="Radio" nb-source="source" nb-model="sModel" nb-multiple="false"
+                        <nb-ui-checks nb-label="Radio" nb-source="source" nb-model="sModel" nb-multiple="false"
                                       nb-text-field="label"
                                       nb-value-field="value"
                                       nb-on-change="change(data)"
-                                      nb-with-icon="showIcon" nb-show-button="showButton"></bn-ui-checks>
+                                      nb-with-icon="showIcon" nb-show-button="showButton"></nb-ui-checks>
                     </div>
                     <div class="result">
                         <i class="glyphicon glyphicon-hand-right"></i>
@@ -359,7 +359,7 @@
                 </div>
             </div>
             <script>
-                app.controller("BnUiChecksCtrl", ["$scope", function ($scope) {
+                app.controller("NbUiChecksCtrl", ["$scope", function ($scope) {
                     $scope.source = [
                         {label: "Option 1", value: "1"},
                         {label: "Option 2", value: "2"},
@@ -378,22 +378,22 @@
 
         <section>
             <h4>
-                &lt;bn-ui-pager /&gt;
+                &lt;nb-ui-pager /&gt;
             </h4>
-            <div class="panel panel-default panel-example" ng-controller="BnUiPagerCtrl">
+            <div class="panel panel-default panel-example" ng-controller="NbUiPagerCtrl">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        @ng-model= { currentPage: 1, pageSize: 10, recordCount: 108 }, @on-page=fn(page)
+                        @nb-model= { currentPage: 1, pageSize: 10, recordCount: 108 }, @nb-on-page=fn(page)
                     </div>
                 </div>
                 <div class="panel-body">
                     <div class="">
-                        <bn-ui-pager ng-model="model" on-page="getData(page)"></bn-ui-pager>
+                        <nb-ui-pager nb-model="model" nb-on-page="getData(page)"></nb-ui-pager>
                     </div>
                 </div>
             </div>
             <script>
-                app.controller("BnUiPagerCtrl", ["$scope", function ($scope) {
+                app.controller("NbUiPagerCtrl", ["$scope", function ($scope) {
                     $scope.model = {currentPage: 1, pageSize: 10, recordCount: 108};
                     $scope.getData = function (page) {
                         console.debug("TODO: Get data for Page#" + page);

@@ -3,7 +3,7 @@
 # 
 # @required: moment.js
 ###
-angular.module "bn.ui"
+angular.module "nb.ui"
     .filter "appDate", ->
         (input) ->
             if moment(input).isValid()

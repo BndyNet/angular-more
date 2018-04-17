@@ -1,5 +1,5 @@
-angular.module "bn.ui"
-    .directive "bnUiSearch", [
+angular.module "nb.ui"
+    .directive "nbUiSearch", [
         ->
             restrict: "E"
             scope:

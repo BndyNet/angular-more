@@ -5,10 +5,10 @@
 # @param {function} nb-on-change - function(data) { // here to get data; }
 #
 # @example
-#   <bn-ui-switch nb-model="model" nb-on-change="change(value)"></bn-ui-switch>
+#   <nb-ui-switch nb-model="model" nb-on-change="change(value)"></nb-ui-switch>
 ###
-angular.module "bn.ui"
-    .directive "bnUiSwitch", [
+angular.module "nb.ui"
+    .directive "nbUiSwitch", [
         ->
             restrict: "E"
             scope:

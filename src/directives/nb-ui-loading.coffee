@@ -2,10 +2,10 @@
 # Loading status for element
 #
 # @example
-#   <button class="btn btn-danger" bn-ui-loading="isLoading">Save</button>
+#   <button class="btn btn-danger" nb-ui-loading="isLoading">Save</button>
 ###
-angular.module "bn.ui"
-    .directive "bnUiLoading", ["$compile", ($compile) ->
+angular.module "nb.ui"
+    .directive "nbUiLoading", ["$compile", ($compile) ->
         restrict: "A"
         link: (scope, elem, attrs) ->
             elem.css "width", elem.outerWidth()
@@ -16,7 +16,7 @@ angular.module "bn.ui"
                 isContentElem = false
             contentStyle = if isContentElem then "opacity-lg" else ""
             children = $compile(elem.contents())(scope);
-            scope.$watch attrs.bnUiLoading, (value) ->
+            scope.$watch attrs.nbUiLoading, (value) ->
                 elem.attr "disabled", value
                 if value
                     elem.prepend "<div class='in-process #{contentStyle}'><div><i class='bounce1'></i><i class='bounce2'></i><i class='bounce3'></i></div></div>"

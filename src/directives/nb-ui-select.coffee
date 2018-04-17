@@ -6,8 +6,8 @@
 # @param {array} nb-source - [{label: '', value: ''}]
 # @param {function} nb-on-change - fn(data)
 ###
-angular.module "bn.ui"
-    .directive "bnUiSelect", [
+angular.module "nb.ui"
+    .directive "nbUiSelect", [
         ->
             restrict: "E"
             scope: 

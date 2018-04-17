@@ -2,10 +2,10 @@
 # Html Editor
 #
 # @example
-#   <bn-ui-html-editor ng-model="content"></bn-ui-html-editor>
+#   <nb-ui-html-editor ng-model="content"></nb-ui-html-editor>
 ###
-angular.module "bn.ui"
-    .directive "bnUiHtmlEditor", ->
+angular.module "nb.ui"
+    .directive "nbUiHtmlEditor", ->
         restrict: "E"
         require: '?ngModel'
         link: (scope, elem, attrs, ngModel) ->

@@ -6,10 +6,10 @@
 # @param {function} nb-on-change - fn(data)
 #
 # @example
-#   <bn-ui-colorpicker nb-colors="[{}, {}, ...]" nb-model="model" nb-on-change="changeColor(color)"></bn-ui-colorpicker>
+#   <nb-ui-colorpicker nb-colors="[{}, {}, ...]" nb-model="model" nb-on-change="changeColor(color)"></nb-ui-colorpicker>
 ###
-angular.module "bn.ui"
-    .directive "bnUiColorpicker",
+angular.module "nb.ui"
+    .directive "nbUiColorpicker",
         ->
             restrict: "E"
             scope:

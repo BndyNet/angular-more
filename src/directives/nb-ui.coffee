@@ -4,7 +4,7 @@
 # @example
 #   <div style="height: 200px"><div bn-fill-height></div></div>
 ###
-angular.module "bn.ui"
+angular.module "nb.ui"
     .directive "bnFillHeight", [
         ->
             restrict: "A"

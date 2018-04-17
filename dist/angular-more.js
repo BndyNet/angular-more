@@ -4,7 +4,7 @@
  */
 
 "use strict";
-angular.module("bn.ui", ["ngSanitize", "ui.bootstrap.datetimepicker", "ui.dateTimeInput"]);
+angular.module("nb.ui", ["ngSanitize", "ui.bootstrap.datetimepicker", "ui.dateTimeInput"]);
 
 
 /*!
@@ -12,7 +12,7 @@ angular.module("bn.ui", ["ngSanitize", "ui.bootstrap.datetimepicker", "ui.dateTi
  * 
  * @required: moment.js
  */
-angular.module("bn.ui").filter("appDate", function() {
+angular.module("nb.ui").filter("appDate", function() {
   return function(input) {
     if (moment(input).isValid()) {
       if (moment.locale() === "zh-cn") {
@@ -57,7 +57,7 @@ angular.module("bn.ui").filter("appDate", function() {
  * @param {function} nb-on-change- Optional, fn(data)
  *
  */
-angular.module("bn.ui").directive("bnUiChecks", function() {
+angular.module("nb.ui").directive("nbUiChecks", function() {
   return {
     restrict: "E",
     scope: {
@@ -176,9 +176,9 @@ angular.module("bn.ui").directive("bnUiChecks", function() {
  * @param {function} nb-on-change - fn(data)
  *
  * @example
- *   <bn-ui-colorpicker nb-colors="[{}, {}, ...]" nb-model="model" nb-on-change="changeColor(color)"></bn-ui-colorpicker>
+ *   <nb-ui-colorpicker nb-colors="[{}, {}, ...]" nb-model="model" nb-on-change="changeColor(color)"></nb-ui-colorpicker>
  */
-angular.module("bn.ui").directive("bnUiColorpicker", function() {
+angular.module("nb.ui").directive("nbUiColorpicker", function() {
   return {
     restrict: "E",
     scope: {
@@ -208,9 +208,9 @@ angular.module("bn.ui").directive("bnUiColorpicker", function() {
  * Html Editor
  *
  * @example
- *   <bn-ui-html-editor ng-model="content"></bn-ui-html-editor>
+ *   <nb-ui-html-editor ng-model="content"></nb-ui-html-editor>
  */
-angular.module("bn.ui").directive("bnUiHtmlEditor", function() {
+angular.module("nb.ui").directive("nbUiHtmlEditor", function() {
   return {
     restrict: "E",
     require: '?ngModel',
@@ -247,34 +247,32 @@ angular.module("bn.ui").directive("bnUiHtmlEditor", function() {
  * Renders an form-group of bootstrap
  * Requires: jQuery v2, moment.js
  * 
- * @param {string} type - The type of textbox
- * @param {string} ng-model - The variable of angular
+ * @param {string} nb-type - The type of textbox
+ * @param {string} nb-model - The variable of angular
  * @param {bool} required - Required validation
  * @param {string} class - The style class 
  * @returns {string} Html string wrapped by form-group of bootstrap.
  * 
  * @example
- *   <bn-input type="[date|datetime]" format="yyyy-MM-dd" ng-model="formModel.email" class="col-xs-4" required>
+ *   <nb-ui-input nb-type="[date|datetime]" nb-format="yyyy-MM-dd" nb-model="formModel.email" class="col-xs-4" required>
  *       <addon>
  *           <i class="fa fa-at"></i>
  *       </addon>
- *   </bn-input>
+ *   </nb-ui-input>
  */
-angular.module("bn.ui").directive("bnUiInput", [
+angular.module("nb.ui").directive("nbUiInput", [
   function() {
     return {
       restrict: "E",
-      replace: true,
       transclude: true,
-      require: "ngModel",
       scope: {
-        ngModel: "=ngModel",
-        label: "@label",
-        addon: "@addon",
-        type: "@type",
-        format: "@format"
+        nbModel: "=",
+        nbLabel: "@",
+        nbAddon: "@",
+        nbType: "@",
+        nbFormat: "@"
       },
-      template: '<div class="bn-ui-input form-group">\n    <label ng-bind-html="label" ng-if="label"></label>\n    <div class="dropdown" ng-if="type==\'datetime\'||type==\'date\'">\n        <a class="dropdown-toggle" id="btn_{{tagId}}" role="button" data-toggle="dropdown" data-target="#" href="#">\n            <div class="input-group">\n                <input type="text" class="form-control" data-ng-model="ngModel" data-date-time-input="{{format}}" readonly>\n                <span class="input-group-addon">\n                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>\n                </span>\n            </div>\n        </a>\n        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">\n            <datetimepicker data-ng-model="ngModel" \n                data-on-set-time="onTimeSet(newDate, oldDate)"\n                data-datetimepicker-config="{ dropdownSelector: \'#btn_\' + tagId, startView:\'day\', minView: type==\'date\' ? \'day\' : \'minute\' }" />\n        </ul>\n    </div>\n    <div class="{{addon?\'input-group\':\'\'}}" ng-if="type!=\'datetime\'&&type!=\'date\'">\n        <input type="{{type}}" class="form-control" ng-model="ngModel" />\n        <div class="input-group-addon" ng-if="addon" ng-bind-html="addon"></div>\n    </div>\n</div>',
+      template: '<div class="form-group">\n    <label ng-bind-html="nbLabel" ng-if="nbLabel"></label>\n    <div class="dropdown" ng-if="nbType==\'datetime\'||nbType==\'date\'">\n        <a class="dropdown-toggle" id="btn_{{tagId}}" role="button" data-toggle="dropdown" data-target="#" href="#">\n            <div class="input-group">\n                <input type="text" class="form-control" data-ng-model="nbModel" data-date-time-input="{{nbFormat}}" readonly>\n                <span class="input-group-addon">\n                    <i class="glyphicon glyphicon-calendar"></i>\n                </span>\n            </div>\n        </a>\n        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">\n            <datetimepicker data-ng-model="nbModel" \n                data-on-set-time="onTimeSet(newDate, oldDate)"\n                data-datetimepicker-config="{ dropdownSelector: \'#btn_\' + tagId, startView:\'day\', minView: nbType==\'date\' ? \'day\' : \'minute\' }" />\n        </ul>\n    </div>\n    <div class="{{nbAddon?\'input-group\':\'\'}}" ng-if="nbType!=\'datetime\'&&nbType!=\'date\'">\n        <input type="{{nbType}}" class="form-control" ng-model="nbModel" />\n        <div class="input-group-addon" ng-if="nbAddon" ng-bind-html="nbAddon"></div>\n    </div>\n</div>',
       controller: [
         "$scope", "$element", "$transclude", function($scope, $element, $transclude) {
           $scope.tagId = parseInt(Math.random() * 1000000);
@@ -287,7 +285,7 @@ angular.module("bn.ui").directive("bnUiInput", [
               }
             }
             if (addon) {
-              $scope.addon = addon.innerHTML;
+              $scope.nbAddon = addon.innerHTML;
             }
           });
         }
@@ -306,9 +304,9 @@ angular.module("bn.ui").directive("bnUiInput", [
  * Loading status for element
  *
  * @example
- *   <button class="btn btn-danger" bn-ui-loading="isLoading">Save</button>
+ *   <button class="btn btn-danger" nb-ui-loading="isLoading">Save</button>
  */
-angular.module("bn.ui").directive("bnUiLoading", [
+angular.module("nb.ui").directive("nbUiLoading", [
   "$compile", function($compile) {
     return {
       restrict: "A",
@@ -322,7 +320,7 @@ angular.module("bn.ui").directive("bnUiLoading", [
         }
         contentStyle = isContentElem ? "opacity-lg" : "";
         children = $compile(elem.contents())(scope);
-        scope.$watch(attrs.bnUiLoading, function(value) {
+        scope.$watch(attrs.nbUiLoading, function(value) {
           elem.attr("disabled", value);
           if (value) {
             elem.prepend("<div class='in-process " + contentStyle + "'><div><i class='bounce1'></i><i class='bounce2'></i><i class='bounce3'></i></div></div>");
@@ -359,70 +357,69 @@ angular.module("bn.ui").directive("bnUiLoading", [
 /*!
  * Renders pagination
  *
- * @param {object} ng-model - {recordCount, pageSize, currentPage}
- * @param {function} on-page - function(currentPage) { // here to get data; }
+ * @param {object} nb-model - {recordCount, pageSize, currentPage}
+ * @param {function} nb-on-page - function(currentPage) { // here to get data; }
  *
  */
-angular.module("bn.ui").directive("bnUiPager", function() {
+angular.module("nb.ui").directive("nbUiPager", function() {
   return {
     restrict: "E",
-    template: '<div class="bn-ui-pager" ng-show="model.recordCount > 0">\n    <div class="summary" ng-show="showSummary">\n        <span ng-bind="(model.currentPage - 1) * model.pageSize + 1"></span>\n        - <span ng-bind="model.currentPage * model.pageSize > model.recordCount ? model.recordCount : model.currentPage * model.pageSize"></span>\n        / <span ng-bind="model.recordCount"></span>\n    </div>\n    <nav aria-label="Page navigation">\n      <ul class="pagination" ng-show="model.pageCount > 1">\n        <li ng-class="{disabled: model.currentPage == 1}">\n          <a aria-label="Previous" ng-click="page(model.currentPage-1)">\n            <span aria-hidden="true">&laquo;</span>\n          </a>\n        </li>\n        <li ng-repeat="p in model.displayPageNumbers track by $index" ng-class="{active: model.currentPage == p, disabled: p < 0}">\n          <a ng-show="p > 0" ng-click="page(p)"><span ng-bind="p"></span></a>\n          <a ng-show="p < 0">...</a>\n        </li>\n        <li ng-class="{disabled: model.currentPage == model.pageCount}">\n          <a aria-label="Next" ng-click="page(model.currentPage+1)">\n            <span aria-hidden="true">&raquo;</span>\n          </a>\n        </li>\n      </ul>\n    </nav>\n</div>',
-    replace: true,
+    template: '<div ng-show="nbModel.recordCount > 0">\n    <div class="summary" ng-show="showSummary">\n        <span ng-bind="(nbModel.currentPage - 1) * nbModel.pageSize + 1"></span>\n        - <span ng-bind="nbModel.currentPage * nbModel.pageSize > nbModel.recordCount ? nbModel.recordCount : nbModel.currentPage * nbModel.pageSize"></span>\n        / <span ng-bind="nbModel.recordCount"></span>\n    </div>\n    <nav aria-label="Page navigation">\n      <ul class="pagination" ng-show="nbModel.pageCount > 1">\n        <li ng-class="{disabled: nbModel.currentPage == 1}">\n          <a aria-label="Previous" ng-click="page(nbModel.currentPage-1)">\n            <span aria-hidden="true">&laquo;</span>\n          </a>\n        </li>\n        <li ng-repeat="p in nbModel.displayPageNumbers track by $index" ng-class="{active: nbModel.currentPage == p, disabled: p < 0}">\n          <a ng-show="p > 0" ng-click="page(p)"><span ng-bind="p"></span></a>\n          <a ng-show="p < 0">...</a>\n        </li>\n        <li ng-class="{disabled: nbModel.currentPage == nbModel.pageCount}">\n          <a aria-label="Next" ng-click="page(nbModel.currentPage+1)">\n            <span aria-hidden="true">&raquo;</span>\n          </a>\n        </li>\n      </ul>\n    </nav>\n</div>',
     scope: {
-      model: "=ngModel",
-      onPage: "&onPage"
+      nbModel: "=",
+      nbOnPage: "&"
     },
     link: function(scope, ele, attrs) {
-      if (typeof scope.model === "undefined") {
-        scope.model = {};
+      if (typeof scope.nbModel === "undefined") {
+        scope.nbModel = {};
       }
       scope.showSummary = typeof attrs["showSummary"] !== "undefined" ? attrs["showSummary"] === "true" : true;
-      scope.$watch("model", function(newValue, oldValue) {
+      scope.$watch("nbModel", function(newValue, oldValue) {
         var i, j, k, l, len, len1, m, n, o, p, q, ref, ref1, ref10, ref2, ref3, ref4, ref5, ref6, ref7, ref8, ref9;
         if (!newValue) {
           return;
         }
-        if (typeof scope.model.pageCount === "undefined") {
-          scope.model.pageCount = Math.ceil(scope.model.recordCount / scope.model.pageSize);
+        if (typeof scope.nbModel.pageCount === "undefined") {
+          scope.nbModel.pageCount = Math.ceil(scope.nbModel.recordCount / scope.nbModel.pageSize);
         }
-        if (typeof scope.model.displayPageNumbers === "undefined") {
-          scope.model.displayPageNumbers = [];
-          if (scope.model.pageCount <= 10) {
-            for (p = i = 1, ref = scope.model.pageCount; 1 <= ref ? i <= ref : i >= ref; p = 1 <= ref ? ++i : --i) {
-              scope.model.displayPageNumbers.push(p);
+        if (typeof scope.nbModel.displayPageNumbers === "undefined") {
+          scope.nbModel.displayPageNumbers = [];
+          if (scope.nbModel.pageCount <= 10) {
+            for (p = i = 1, ref = scope.nbModel.pageCount; 1 <= ref ? i <= ref : i >= ref; p = 1 <= ref ? ++i : --i) {
+              scope.nbModel.displayPageNumbers.push(p);
             }
           } else {
-            if (scope.model.currentPage <= 5) {
+            if (scope.nbModel.currentPage <= 5) {
               for (p = j = 1; j <= 7; p = ++j) {
-                scope.model.displayPageNumbers.push(p);
+                scope.nbModel.displayPageNumbers.push(p);
               }
-              scope.model.displayPageNumbers.push(-1);
-              for (p = k = ref1 = scope.model.pageCount - 1, ref2 = scope.model.pageCount; ref1 <= ref2 ? k <= ref2 : k >= ref2; p = ref1 <= ref2 ? ++k : --k) {
-                scope.model.displayPageNumbers.push(p);
+              scope.nbModel.displayPageNumbers.push(-1);
+              for (p = k = ref1 = scope.nbModel.pageCount - 1, ref2 = scope.nbModel.pageCount; ref1 <= ref2 ? k <= ref2 : k >= ref2; p = ref1 <= ref2 ? ++k : --k) {
+                scope.nbModel.displayPageNumbers.push(p);
               }
-            } else if (scope.model.currentPage > scope.model.pageCount - 5) {
+            } else if (scope.nbModel.currentPage > scope.nbModel.pageCount - 5) {
               ref3 = [1, 2];
               for (l = 0, len = ref3.length; l < len; l++) {
                 p = ref3[l];
-                scope.model.displayPageNumbers.push(p);
+                scope.nbModel.displayPageNumbers.push(p);
               }
-              scope.model.displayPageNumbers.push(-1);
-              for (p = m = ref4 = scope.model.pageCount - 6, ref5 = scope.model.pageCount; ref4 <= ref5 ? m <= ref5 : m >= ref5; p = ref4 <= ref5 ? ++m : --m) {
-                scope.model.displayPageNumbers.push(p);
+              scope.nbModel.displayPageNumbers.push(-1);
+              for (p = m = ref4 = scope.nbModel.pageCount - 6, ref5 = scope.nbModel.pageCount; ref4 <= ref5 ? m <= ref5 : m >= ref5; p = ref4 <= ref5 ? ++m : --m) {
+                scope.nbModel.displayPageNumbers.push(p);
               }
             } else {
               ref6 = [1, 2];
               for (n = 0, len1 = ref6.length; n < len1; n++) {
                 p = ref6[n];
-                scope.model.displayPageNumbers.push(p);
+                scope.nbModel.displayPageNumbers.push(p);
               }
-              scope.model.displayPageNumbers.push(-1);
-              for (p = o = ref7 = scope.model.currentPage - 2, ref8 = scope.model.currentPage + 2; ref7 <= ref8 ? o <= ref8 : o >= ref8; p = ref7 <= ref8 ? ++o : --o) {
-                scope.model.displayPageNumbers.push(p);
+              scope.nbModel.displayPageNumbers.push(-1);
+              for (p = o = ref7 = scope.nbModel.currentPage - 2, ref8 = scope.nbModel.currentPage + 2; ref7 <= ref8 ? o <= ref8 : o >= ref8; p = ref7 <= ref8 ? ++o : --o) {
+                scope.nbModel.displayPageNumbers.push(p);
               }
-              scope.model.displayPageNumbers.push(-1);
-              for (p = q = ref9 = scope.model.pageCount - 1, ref10 = scope.model.pageCount; ref9 <= ref10 ? q <= ref10 : q >= ref10; p = ref9 <= ref10 ? ++q : --q) {
-                scope.model.displayPageNumbers.push(p);
+              scope.nbModel.displayPageNumbers.push(-1);
+              for (p = q = ref9 = scope.nbModel.pageCount - 1, ref10 = scope.nbModel.pageCount; ref9 <= ref10 ? q <= ref10 : q >= ref10; p = ref9 <= ref10 ? ++q : --q) {
+                scope.nbModel.displayPageNumbers.push(p);
               }
             }
           }
@@ -432,23 +429,23 @@ angular.module("bn.ui").directive("bnUiPager", function() {
         if (p <= 0) {
           p = 1;
         }
-        if (p > scope.model.pageCount) {
-          p = scope.model.pageCount;
+        if (p > scope.nbModel.pageCount) {
+          p = scope.nbModel.pageCount;
         }
-        if (scope.model.currentPage !== p) {
-          if (scope.onPage) {
-            scope.onPage({
+        if (scope.nbModel.currentPage !== p) {
+          if (scope.nbOnPage) {
+            scope.nbOnPage({
               page: p
             });
           }
-          scope.model.currentPage = p;
+          scope.nbModel.currentPage = p;
         }
       };
     }
   };
 });
 
-angular.module("bn.ui").directive("bnUiSearch", [
+angular.module("nb.ui").directive("nbUiSearch", [
   function() {
     return {
       restrict: "E",
@@ -471,7 +468,7 @@ angular.module("bn.ui").directive("bnUiSearch", [
  * @param {array} nb-source - [{label: '', value: ''}]
  * @param {function} nb-on-change - fn(data)
  */
-angular.module("bn.ui").directive("bnUiSelect", [
+angular.module("nb.ui").directive("nbUiSelect", [
   function() {
     return {
       restrict: "E",
@@ -576,9 +573,9 @@ angular.module("bn.ui").directive("bnUiSelect", [
  * @param {function} nb-on-change - function(data) { // here to get data; }
  *
  * @example
- *   <bn-ui-switch nb-model="model" nb-on-change="change(value)"></bn-ui-switch>
+ *   <nb-ui-switch nb-model="model" nb-on-change="change(value)"></nb-ui-switch>
  */
-angular.module("bn.ui").directive("bnUiSwitch", [
+angular.module("nb.ui").directive("nbUiSwitch", [
   function() {
     return {
       restrict: "E",
@@ -608,7 +605,7 @@ angular.module("bn.ui").directive("bnUiSwitch", [
  * @example
  *   <div style="height: 200px"><div bn-fill-height></div></div>
  */
-angular.module("bn.ui").directive("bnFillHeight", [
+angular.module("nb.ui").directive("bnFillHeight", [
   function() {
     return {
       restrict: "A",
