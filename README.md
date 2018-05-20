@@ -6,6 +6,15 @@ This is the extensions about directives, filters for AngularJS.
 
 ## Changelog
 
+### v3.0.0
+
+- Rename module **bn.ui** to **nb.ui**
+- All components starts with **nb**
+- Add methods as below:
+    - angular.start("ngApp", {});
+    - angular.resetForm($scope.formName);
+    - angular.ajaxAll($http.get(...), $http.post(...)).then(function(values){});
+
 ### v2.2.5
 
 - Update documentation and demo
@@ -74,7 +83,7 @@ angular-more/
 ```
 
 ```js
-var app = angular.module("app", ["bn.ui"]);
+var app = angular.module("app", ["nb.ui"]);
 ```
 
 

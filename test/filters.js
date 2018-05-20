@@ -1,7 +1,7 @@
 describe("Filters", function() {
   var filter;
   filter = null;
-  beforeEach(module("bn.ui"));
+  beforeEach(module("nb.ui"));
   beforeEach(inject(function(_$filter_) {
     return filter = _$filter_;
   }));

@@ -1,7 +1,7 @@
 ﻿describe "Filters", ->
     
     filter = null
-    beforeEach module "bn.ui"
+    beforeEach module "nb.ui"
     beforeEach inject (_$filter_) ->
         filter = _$filter_
 
